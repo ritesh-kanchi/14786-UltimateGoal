@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.qualcomm.ftcrobotcontroller",
+  "variantName": "processDebugResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 38,
+      "versionName": "6.0",
+      "outputFile": "TeamCode-debug.apk"
+    }
+  ]
+}
