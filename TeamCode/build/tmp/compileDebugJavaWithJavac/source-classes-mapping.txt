@@ -53,6 +53,10 @@ org/firstinspires/ftc/teamcode/drive/SampleTankDrive.java
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$1
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$Mode
+org/firstinspires/ftc/teamcode/CrapAuton.java
+ org.firstinspires.ftc.teamcode.CrapAuton
+org/firstinspires/ftc/teamcode/CrapTeleOp.java
+ org.firstinspires.ftc.teamcode.CrapTeleOp
 org/firstinspires/ftc/teamcode/drive/DriveConstants.java
  org.firstinspires.ftc.teamcode.drive.DriveConstants
 org/firstinspires/ftc/teamcode/drive/opmode/MaxVelocityTuner.java
