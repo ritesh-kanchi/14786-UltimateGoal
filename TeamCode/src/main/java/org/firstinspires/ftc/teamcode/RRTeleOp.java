@@ -69,6 +69,14 @@ public class RRTeleOp extends LinearOpMode {
 
             drive.setMotorPowers(frontLeftPower,backLeftPower,frontRightPower,backRightPower);
 
+            if (gamepad1.a) {
+                ringPush.setPosition(PUSH_MAX_VALUE);
+            }
+
+            if (gamepad1.b) {
+                ringPush.setPosition(PUSH_MIN_VALUE);
+            }
+
         }
     }
 }
