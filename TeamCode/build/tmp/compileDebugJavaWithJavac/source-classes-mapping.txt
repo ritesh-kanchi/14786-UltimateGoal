@@ -18,6 +18,8 @@ org/firstinspires/ftc/teamcode/Trajectories.java
  org.firstinspires.ftc.teamcode.Trajectories
 org/firstinspires/ftc/teamcode/drive/opmode/StraightTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.StraightTest
+org/firstinspires/ftc/teamcode/RRTeleOp.java
+ org.firstinspires.ftc.teamcode.RRTeleOp
 org/firstinspires/ftc/teamcode/drive/opmode/TrackingWheelLateralDistanceTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.TrackingWheelLateralDistanceTuner
 org/firstinspires/ftc/teamcode/util/BNO055IMUUtil.java
