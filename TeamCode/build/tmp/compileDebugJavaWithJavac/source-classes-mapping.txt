@@ -47,6 +47,8 @@ org/firstinspires/ftc/teamcode/drive/StandardTrackingWheelLocalizer.java
  org.firstinspires.ftc.teamcode.drive.StandardTrackingWheelLocalizer
 org/firstinspires/ftc/teamcode/util/LoggingUtil.java
  org.firstinspires.ftc.teamcode.util.LoggingUtil
+org/firstinspires/ftc/teamcode/TestingOdometry2.java
+ org.firstinspires.ftc.teamcode.TestingOdometry2
 org/firstinspires/ftc/teamcode/util/AxesSigns.java
  org.firstinspires.ftc.teamcode.util.AxesSigns
 org/firstinspires/ftc/teamcode/drive/opmode/LocalizationTest.java
@@ -63,6 +65,8 @@ org/firstinspires/ftc/teamcode/drive/DriveConstants.java
  org.firstinspires.ftc.teamcode.drive.DriveConstants
 org/firstinspires/ftc/teamcode/drive/opmode/MaxVelocityTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.MaxVelocityTuner
+org/firstinspires/ftc/teamcode/TestingOdometry1.java
+ org.firstinspires.ftc.teamcode.TestingOdometry1
 org/firstinspires/ftc/teamcode/TestTrajectory.java
  org.firstinspires.ftc.teamcode.TestTrajectory
 org/firstinspires/ftc/teamcode/drive/opmode/StrafeTest.java
