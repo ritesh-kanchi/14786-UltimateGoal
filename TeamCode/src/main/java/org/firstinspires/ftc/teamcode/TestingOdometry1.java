@@ -29,8 +29,10 @@ public class TestingOdometry1 extends LinearOpMode {
         rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightEncoder"));
         frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "frontEncoder"));
 
-        rightFront.setDirection(DcMotorSimple.Direction.REVERSE);
-        rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFront.setDirection(DcMotorSimple.Direction.FORWARD);
+        rightRear.setDirection(DcMotorSimple.Direction.FORWARD);
+        leftFront.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftRear.setDirection(DcMotorSimple.Direction.REVERSE);
 
         frontEncoder.setDirection(Encoder.Direction.REVERSE);
 
@@ -38,7 +40,6 @@ public class TestingOdometry1 extends LinearOpMode {
         rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
 
         waitForStart();
         while (opModeIsActive()) {
@@ -53,5 +54,4 @@ public class TestingOdometry1 extends LinearOpMode {
             telemetry.update();
         }
     }
-
 }

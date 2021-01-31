@@ -15,11 +15,11 @@ public class RRTeleOp extends LinearOpMode {
 
     public static double driveClip = 0.6;
 
-    private DcMotor leftShooter, rightShooter;
+//    private DcMotor leftShooter, rightShooter;
 
-    private DcMotor intake;
+//    private DcMotor intake;
 
-    private Servo ringPush;
+//    private Servo ringPush;
 
     public static double PUSH_MAX_VALUE = 0.1;
     public static double PUSH_MIN_VALUE = 0.8;
@@ -27,12 +27,12 @@ public class RRTeleOp extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        leftShooter = hardwareMap.get(DcMotor.class, "left_shooter");
-        rightShooter = hardwareMap.get(DcMotor.class, "right_shooter");
-
-        intake = hardwareMap.get(DcMotor.class, "intake_motor");
-
-        ringPush = hardwareMap.get(Servo.class, "ring_push");
+//        leftShooter = hardwareMap.get(DcMotor.class, "left_shooter");
+//        rightShooter = hardwareMap.get(DcMotor.class, "right_shooter");
+//
+//        intake = hardwareMap.get(DcMotor.class, "intake_motor");
+//
+//        ringPush = hardwareMap.get(Servo.class, "ring_push");
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
@@ -69,13 +69,13 @@ public class RRTeleOp extends LinearOpMode {
 
             drive.setMotorPowers(frontLeftPower,backLeftPower,frontRightPower,backRightPower);
 
-            if (gamepad1.a) {
-                ringPush.setPosition(PUSH_MAX_VALUE);
-            }
-
-            if (gamepad1.b) {
-                ringPush.setPosition(PUSH_MIN_VALUE);
-            }
+//            if (gamepad1.a) {
+//                ringPush.setPosition(PUSH_MAX_VALUE);
+//            }
+//
+//            if (gamepad1.b) {
+//                ringPush.setPosition(PUSH_MIN_VALUE);
+//            }
 
         }
     }
