@@ -4,10 +4,10 @@ org/firstinspires/ftc/teamcode/drive/opmode/DriveVelocityPIDTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.DriveVelocityPIDTuner
  org.firstinspires.ftc.teamcode.drive.opmode.DriveVelocityPIDTuner$1
  org.firstinspires.ftc.teamcode.drive.opmode.DriveVelocityPIDTuner$Mode
-org/firstinspires/ftc/teamcode/drive/opmode/AutomaticFeedforwardTuner.java
- org.firstinspires.ftc.teamcode.drive.opmode.AutomaticFeedforwardTuner
 org/firstinspires/ftc/teamcode/drive/opmode/BackAndForth.java
  org.firstinspires.ftc.teamcode.drive.opmode.BackAndForth
+org/firstinspires/ftc/teamcode/drive/opmode/AutomaticFeedforwardTuner.java
+ org.firstinspires.ftc.teamcode.drive.opmode.AutomaticFeedforwardTuner
 org/firstinspires/ftc/teamcode/drive/opmode/TurnTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.TurnTest
 org/firstinspires/ftc/teamcode/util/RegressionUtil.java
@@ -26,10 +26,6 @@ org/firstinspires/ftc/teamcode/util/BNO055IMUUtil.java
  org.firstinspires.ftc.teamcode.util.BNO055IMUUtil
 org/firstinspires/ftc/teamcode/util/AssetsTrajectoryManager.java
  org.firstinspires.ftc.teamcode.util.AssetsTrajectoryManager
-org/firstinspires/ftc/teamcode/drive/opmode/ManualFeedforwardTuner.java
- org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner
- org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner$1
- org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner$Mode
 org/firstinspires/ftc/teamcode/util/Encoder.java
  org.firstinspires.ftc.teamcode.util.Encoder
  org.firstinspires.ftc.teamcode.util.Encoder$Direction
@@ -37,6 +33,10 @@ org/firstinspires/ftc/teamcode/util/LynxModuleUtil.java
  org.firstinspires.ftc.teamcode.util.LynxModuleUtil
  org.firstinspires.ftc.teamcode.util.LynxModuleUtil$LynxFirmwareVersion
  org.firstinspires.ftc.teamcode.util.LynxModuleUtil$LynxFirmwareVersionException
+org/firstinspires/ftc/teamcode/drive/opmode/ManualFeedforwardTuner.java
+ org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner
+ org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner$1
+ org.firstinspires.ftc.teamcode.drive.opmode.ManualFeedforwardTuner$Mode
 org/firstinspires/ftc/teamcode/drive/SampleMecanumDrive.java
  org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive
  org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive$1
@@ -65,10 +65,10 @@ org/firstinspires/ftc/teamcode/drive/DriveConstants.java
  org.firstinspires.ftc.teamcode.drive.DriveConstants
 org/firstinspires/ftc/teamcode/drive/opmode/MaxVelocityTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.MaxVelocityTuner
-org/firstinspires/ftc/teamcode/TestingOdometry1.java
- org.firstinspires.ftc.teamcode.TestingOdometry1
 org/firstinspires/ftc/teamcode/TestTrajectory.java
  org.firstinspires.ftc.teamcode.TestTrajectory
+org/firstinspires/ftc/teamcode/TestingOdometry1.java
+ org.firstinspires.ftc.teamcode.TestingOdometry1
 org/firstinspires/ftc/teamcode/drive/opmode/StrafeTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.StrafeTest
 org/firstinspires/ftc/teamcode/util/DashboardUtil.java
