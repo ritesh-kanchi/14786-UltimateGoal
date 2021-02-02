@@ -1,11 +1,10 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.acmerobotics.dashboard.config.Config;
+import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
@@ -36,38 +35,19 @@ public class RRTeleOp extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        drive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
         while (opModeIsActive()) {
-            double forward = -gamepad1.left_stick_y;
-            double turn = gamepad1.right_stick_x;
-            double strafe = gamepad1.left_stick_x;
+            drive.setWeightedDrivePower(
+                    new Pose2d(
+                            -gamepad1.left_stick_y,
+                            -gamepad1.left_stick_x,
+                            -gamepad1.right_stick_x
+                    )
+            );
 
-            double frontLeftPower = Range.clip(forward + turn + strafe, -driveClip, driveClip);
-            double frontRightPower = Range.clip(forward - turn - strafe, -driveClip, driveClip);
-            double backLeftPower = Range.clip(forward + turn - strafe, -driveClip, driveClip);
-            double backRightPower = Range.clip(forward - turn + strafe, -driveClip, driveClip);
-
-
-
-            if (Math.abs(frontLeftPower) > 1 || Math.abs(backLeftPower) > 1 ||
-                    Math.abs(frontRightPower) > 1 || Math.abs(backRightPower) > 1 ) {
-                // Find the largest power
-                double max = 0;
-                max = Math.max(Math.abs(frontLeftPower), Math.abs(backLeftPower));
-                max = Math.max(Math.abs(frontRightPower), max);
-                max = Math.max(Math.abs(backRightPower), max);
-
-                // Divide everything by max (it's positive so we don't need to worry
-                // about signs)
-                frontLeftPower /= max;
-                backLeftPower /= max;
-                frontRightPower /= max;
-                backRightPower /= max;
-            }
-
-            drive.setMotorPowers(frontLeftPower,backLeftPower,frontRightPower,backRightPower);
+            drive.update();
 
 //            if (gamepad1.a) {
 //                ringPush.setPosition(PUSH_MAX_VALUE);
