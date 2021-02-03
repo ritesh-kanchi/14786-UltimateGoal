@@ -57,6 +57,11 @@ public class RRTeleOp extends LinearOpMode {
 //                ringPush.setPosition(PUSH_MIN_VALUE);
 //            }
 
+            Pose2d poseEstimate = drive.getPoseEstimate();
+            telemetry.addData("x", poseEstimate.getX());
+            telemetry.addData("y", poseEstimate.getY());
+            telemetry.addData("heading", poseEstimate.getHeading());
+            telemetry.update();
         }
     }
 }
