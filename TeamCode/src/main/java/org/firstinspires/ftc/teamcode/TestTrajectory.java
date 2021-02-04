@@ -19,30 +19,55 @@ public class TestTrajectory extends LinearOpMode {
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        Trajectories trajectory = new Trajectories(drive,this);
-
-        Pose2d startPose = new Pose2d(-60,50,Math.toRadians(90));
+        Pose2d startPose = new Pose2d(-48,-50,Math.toRadians(0));
 
         drive.setPoseEstimate(startPose);
 
-//        waitForStart();
+        waitForStart();
+        if (isStopRequested()) return;
 //        trajectory.forward(distance,0,0,0);
 
         Trajectory traj1 = drive.trajectoryBuilder(startPose)
 //                .splineTo(new Vector2d(-45, 35),Math.toRadians(90))
 //                .lineTo(new Vector2d(-45,35))
-                .splineToConstantHeading(new Vector2d(-45, 35), Math.toRadians(90))
+                .splineToConstantHeading(new Vector2d(0, 0), Math.toRadians(0))
                 .build();
 
-        Trajectory traj2 = drive.trajectoryBuilder(traj1.end())
-//                .splineTo(new Vector2d(12, 61), Math.toRadians(90))
-//                .lineTo(new Vector2d(12,61))
-                .splineToConstantHeading(new Vector2d(12, 61), Math.toRadians(90))
-                .build();
+//        Trajectory traj2 = drive.trajectoryBuilder(traj1.end())
+////                .splineTo(new Vector2d(12, 61), Math.toRadians(90))
+////                .lineTo(new Vector2d(12,61))
+//                .splineToConstantHeading(new Vector2d(12, 61), Math.toRadians(90))
+//                .build();
 
 
 
         drive.followTrajectory(traj1);
-        drive.followTrajectory(traj2);
+//        drive.followTrajectory(traj2);
     }
 }
+
+//@Autonomous(group = "drive")
+//public class SplineTest extends LinearOpMode {
+//    @Override
+//    public void runOpMode() throws InterruptedException {
+//        SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+//
+//        waitForStart();
+//
+//        if (isStopRequested()) return;
+//
+//        Trajectory traj = drive.trajectoryBuilder(new Pose2d())
+//                .splineTo(new Vector2d(30, 30), 0)
+//                .build();
+//
+//        drive.followTrajectory(traj);
+//
+//        sleep(2000);
+//
+//        drive.followTrajectory(
+//                drive.trajectoryBuilder(traj.end(), true)
+//                        .splineTo(new Vector2d(0, 0), Math.toRadians(180))
+//                        .build()
+//        );
+//    }
+//}
