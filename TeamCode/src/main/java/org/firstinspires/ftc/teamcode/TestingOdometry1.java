@@ -45,14 +45,14 @@ public class TestingOdometry1 extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            telemetry.addData("Left Encoder",leftEncoder.getCurrentPosition());
-            telemetry.addData("Right Encoder",rightEncoder.getCurrentPosition());
-            telemetry.addData("Front Encoder",frontEncoder.getCurrentPosition());
+            telemetry.addData("Left Encoder", leftEncoder.getCurrentPosition());
+            telemetry.addData("Right Encoder", rightEncoder.getCurrentPosition());
+            telemetry.addData("Front Encoder", frontEncoder.getCurrentPosition());
             telemetry.addLine("");
-            telemetry.addData("Left Front",leftFront.getCurrentPosition());
-            telemetry.addData("Right Front",rightFront.getCurrentPosition());
-            telemetry.addData("Left Back",leftRear.getCurrentPosition());
-            telemetry.addData("Right Back",rightRear.getCurrentPosition());
+            telemetry.addData("Left Front", leftFront.getCurrentPosition());
+            telemetry.addData("Right Front", rightFront.getCurrentPosition());
+            telemetry.addData("Left Back", leftRear.getCurrentPosition());
+            telemetry.addData("Right Back", rightRear.getCurrentPosition());
             telemetry.update();
         }
     }

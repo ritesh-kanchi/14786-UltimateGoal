@@ -1,13 +1,14 @@
 package org.firstinspires.ftc.teamcode;
- import com.qualcomm.robotcore.eventloop.opmode.Disabled;
- import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
- import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
- import com.qualcomm.robotcore.hardware.DcMotor;
- import com.qualcomm.robotcore.hardware.DcMotorSimple;
- import com.qualcomm.robotcore.util.Range;
+
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.util.Range;
 
 @Disabled
-@TeleOp (name = "CrapTeleOp")
+@TeleOp(name = "CrapTeleOp")
 public class CrapTeleOp extends LinearOpMode {
 
     public DcMotor frontLeftDrive, frontRightDrive, backLeftDrive, backRightDrive, intakeMotor, leftShooterMotor, rightShooterMotor;
@@ -44,10 +45,8 @@ public class CrapTeleOp extends LinearOpMode {
             double strafe = gamepad1.right_stick_x;
 
 
-
             double intakePower = Range.clip(gamepad1.left_trigger, -0.35, 0.35);
             double shooterPower = Range.clip(gamepad1.right_trigger, -1, 1);
-
 
 
 //            double frontLeftPower = (y+x+rx);
@@ -73,10 +72,10 @@ public class CrapTeleOp extends LinearOpMode {
 //            backLeftDrive.setPower(backLeftPower);
 //            backRightDrive.setPower(backRightPower);
 
-            frontLeftDrive.setPower(Range.clip(forward + turn + strafe,-0.5,0.5));
-            frontRightDrive.setPower(Range.clip(forward - turn - strafe,-0.5,0.5));
-            backLeftDrive.setPower(Range.clip(forward + turn - strafe,-0.5,0.5));
-            backRightDrive.setPower(Range.clip(forward - turn + strafe,-0.5,0.5));
+            frontLeftDrive.setPower(Range.clip(forward + turn + strafe, -0.5, 0.5));
+            frontRightDrive.setPower(Range.clip(forward - turn - strafe, -0.5, 0.5));
+            backLeftDrive.setPower(Range.clip(forward + turn - strafe, -0.5, 0.5));
+            backRightDrive.setPower(Range.clip(forward - turn + strafe, -0.5, 0.5));
 
             intakeMotor.setPower(intakePower);
 

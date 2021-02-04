@@ -42,9 +42,9 @@ public class TestingOdometry2 extends LinearOpMode {
 
         waitForStart();
         while (opModeIsActive()) {
-            telemetry.addData("Left Encoder",leftEncoder.getCurrentPosition());
-            telemetry.addData("Right Encoder",rightEncoder.getCurrentPosition());
-            telemetry.addData("Front Encoder",frontEncoder.getCurrentPosition());
+            telemetry.addData("Left Encoder", leftEncoder.getCurrentPosition());
+            telemetry.addData("Right Encoder", rightEncoder.getCurrentPosition());
+            telemetry.addData("Front Encoder", frontEncoder.getCurrentPosition());
             telemetry.update();
         }
     }

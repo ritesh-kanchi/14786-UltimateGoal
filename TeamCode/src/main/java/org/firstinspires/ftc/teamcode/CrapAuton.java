@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Config
 @Disabled
-@Autonomous(name="CrapAuton")
+@Autonomous(name = "CrapAuton")
 public class CrapAuton extends LinearOpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor frontLeftDrive = null;
