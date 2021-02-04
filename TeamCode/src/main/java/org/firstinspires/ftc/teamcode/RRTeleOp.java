@@ -35,6 +35,10 @@ public class RRTeleOp extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+        Pose2d startPose = new Pose2d(-48,-50,Math.toRadians(0));
+
+        drive.setPoseEstimate(startPose);
+
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();

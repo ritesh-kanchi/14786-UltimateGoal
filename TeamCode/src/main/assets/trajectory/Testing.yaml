@@ -1,39 +1,33 @@
 ---
 startPose:
-  x: -60.0
-  y: 50.0
+  x: -48.0
+  y: -50.0
   heading: 0.0
 startTangent: 0.0
 waypoints:
 - position:
-    x: -45.0
-    y: 35.0
+    x: 0.0
+    y: 0.0
   heading: 0.0
   tangent: 0.0
-  interpolationType: "LINEAR"
+  interpolationType: "CONSTANT"
 - position:
-    x: 12.0
-    y: 61.0
+    x: 24.0
+    y: -48.0
   heading: 0.0
   tangent: 0.0
-  interpolationType: "LINEAR"
+  interpolationType: "CONSTANT"
 - position:
-    x: 36.0
-    y: 36.5
+    x: 48.0
+    y: 0.0
   heading: 0.0
   tangent: 0.0
-  interpolationType: "LINEAR"
+  interpolationType: "CONSTANT"
 - position:
-    x: 60.0
-    y: 61.0
+    x: -48.0
+    y: -50.0
   heading: 0.0
   tangent: 0.0
-  interpolationType: "LINEAR"
-- position:
-    x: 8.0
-    y: 61.0
-  heading: 0.0
-  tangent: 0.0
-  interpolationType: "LINEAR"
+  interpolationType: "CONSTANT"
 resolution: 0.25
 version: 1
