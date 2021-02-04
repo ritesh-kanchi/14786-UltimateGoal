@@ -52,10 +52,10 @@
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.4.10" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
     <orderEntry type="library" name="Gradle: com.acmerobotics.dashboard:dashboard:0.4.0@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotCore:6.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotServer:6.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Hardware:6.0.1@aar" level="project" />
-    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:FtcCommon:6.0.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotCore:6.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:RobotServer:6.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:Hardware:6.1.1@aar" level="project" />
+    <orderEntry type="library" name="Gradle: org.firstinspires.ftc:FtcCommon:6.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: :tfod-release:@aar" level="project" />
     <orderEntry type="library" name="Gradle: :tensorflow-lite-0.0.0-nightly:@aar" level="project" />
     <orderEntry type="module" module-name="14786-UltimateGoal.FtcRobotController" />
