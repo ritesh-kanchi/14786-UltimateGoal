@@ -10,12 +10,12 @@ org/firstinspires/ftc/teamcode/drive/opmode/BackAndForth.java
  org.firstinspires.ftc.teamcode.drive.opmode.BackAndForth
 org/firstinspires/ftc/teamcode/drive/opmode/TurnTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.TurnTest
+org/firstinspires/ftc/teamcode/drive/opmode/MaxAngularVelocityTuner.java
+ org.firstinspires.ftc.teamcode.drive.opmode.MaxAngularVelocityTuner
 org/firstinspires/ftc/teamcode/util/RegressionUtil.java
  org.firstinspires.ftc.teamcode.util.RegressionUtil
  org.firstinspires.ftc.teamcode.util.RegressionUtil$AccelResult
  org.firstinspires.ftc.teamcode.util.RegressionUtil$RampResult
-org/firstinspires/ftc/teamcode/Trajectories.java
- org.firstinspires.ftc.teamcode.Trajectories
 org/firstinspires/ftc/teamcode/drive/opmode/StraightTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.StraightTest
 org/firstinspires/ftc/teamcode/RRTeleOp.java
@@ -57,6 +57,8 @@ org/firstinspires/ftc/teamcode/drive/SampleTankDrive.java
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$1
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$Mode
+org/firstinspires/ftc/teamcode/RingDetector.java
+ org.firstinspires.ftc.teamcode.RingDetector
 org/firstinspires/ftc/teamcode/CrapAuton.java
  org.firstinspires.ftc.teamcode.CrapAuton
 org/firstinspires/ftc/teamcode/CrapTeleOp.java
@@ -77,3 +79,5 @@ org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
 org/firstinspires/ftc/teamcode/drive/opmode/FollowerPIDTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.FollowerPIDTuner
+org/firstinspires/ftc/teamcode/ObjectDetection.java
+ org.firstinspires.ftc.teamcode.ObjectDetection

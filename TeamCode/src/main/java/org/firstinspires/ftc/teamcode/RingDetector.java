@@ -35,10 +35,13 @@ public class RingDetector extends LinearOpMode {
                             i++;
                             if (recognition.getLabel().equals(objD.LABEL_FIRST_ELEMENT)) {
                                 // QUAD RINGS
+                                telemetry.addData("QUAD FOUND",recognition.getConfidence());
                             } else if (recognition.getLabel().equals(objD.LABEL_SECOND_ELEMENT)) {
                                 // SINGLE RING
+                                telemetry.addData("SINGLE FOUND",recognition.getConfidence());
                             } else {
                                 // NO RINGS
+                                telemetry.addData("NONE FOUND",updatedRecognitions.size());
                             }
                         }
                         telemetry.update();

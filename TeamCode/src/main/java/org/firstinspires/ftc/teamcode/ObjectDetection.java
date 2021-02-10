@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.vuforia.PIXEL_FORMAT;
@@ -25,13 +26,13 @@ public class ObjectDetection {
 
     LinearOpMode opmode = null;
 
-    public static final float CON_VALUE = 0.8f;
+    public static float CON_VALUE = 0.8f;
 
-    public static final double MAGNIFICATION_VALUE = 2.5;
+    public static double MAGNIFICATION_VALUE = 1.5;
 
-    public static final double ASPECT_RATIO_W = 16.0;
+    public static double ASPECT_RATIO_W = 4.0;
 
-    public static final double ASPECT_RATIO_H = 9.0;
+    public static double ASPECT_RATIO_H = 3.0;
 
     public ObjectDetection(LinearOpMode opMode) {
         opmode = opMode;
@@ -61,6 +62,7 @@ public class ObjectDetection {
         /*
          * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
          */
+
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
@@ -69,9 +71,11 @@ public class ObjectDetection {
         //  Instantiate the Vuforia engine
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
 
+        FtcDashboard.getInstance().startCameraStream(vuforia, 0);
+
         // Loading trackables is not necessary for the TensorFlow Object Detection engine.
 
-        Vuforia.setFrameFormat(PIXEL_FORMAT.GRAYSCALE, true);
+//        Vuforia.setFrameFormat(PIXEL_FORMAT.GRAYSCALE, true);
         vuforia.setFrameQueueCapacity(1);
 
     }
