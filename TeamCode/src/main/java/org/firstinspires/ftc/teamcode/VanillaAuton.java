@@ -62,6 +62,7 @@ public class VanillaAuton extends LinearOpMode {
                             } else {
                                 // NO RINGS
                                 // SET TRAJECTORY 1, REST ARE ALL THE SAME
+                                telemetry.addData("NONE FOUND",updatedRecognitions.size());
                                 break;
                             }
                         }
