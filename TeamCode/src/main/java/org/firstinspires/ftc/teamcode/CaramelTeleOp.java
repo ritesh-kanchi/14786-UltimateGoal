@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Config
-@TeleOp(name = "Caramel")
+@TeleOp(name = "Caramel TeleOp")
 // ADVANCED EXPERIMENTAL CONTROL SCHEME
 public class CaramelTeleOp extends LinearOpMode {
 

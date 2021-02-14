@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 
 @Config
-@TeleOp(name = "Vanilla")
+@TeleOp(name = "Vanilla TeleOp")
 // BASIC CONTROL SCHEME
 public class VanillaTeleOp extends LinearOpMode {
 
