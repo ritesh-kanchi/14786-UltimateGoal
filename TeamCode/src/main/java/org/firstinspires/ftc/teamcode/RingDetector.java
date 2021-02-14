@@ -14,6 +14,8 @@ import java.util.List;
 public class RingDetector extends LinearOpMode {
     ObjectDetection objD = new ObjectDetection(this);
 
+    private ObjectDetection.OBJECT detected;
+
     @Override
     public void runOpMode() {
         objD.init();
@@ -33,15 +35,23 @@ public class RingDetector extends LinearOpMode {
                         for (Recognition recognition : updatedRecognitions) {
                             objD.data(i, recognition);
                             i++;
-                            if (recognition.getLabel().equals(objD.LABEL_FIRST_ELEMENT)) {
+                            if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND",recognition.getConfidence());
-                            } else if (recognition.getLabel().equals(objD.LABEL_SECOND_ELEMENT)) {
+                                detected = ObjectDetection.OBJECT.QUAD;
+                            } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND",recognition.getConfidence());
+                                detected = ObjectDetection.OBJECT.QUAD;
                             } else {
                                 // NO RINGS
-                                telemetry.addData("NONE FOUND",updatedRecognitions.size());
+                                detected = ObjectDetection.OBJECT.NONE;
+                            }
+
+                            switch (detected) {
+                                case QUAD: break;
+                                case SINGLE: break;
+                                default: break;
                             }
                         }
                         telemetry.update();

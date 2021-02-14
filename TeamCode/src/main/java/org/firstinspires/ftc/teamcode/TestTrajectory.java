@@ -16,6 +16,7 @@ public class TestTrajectory extends LinearOpMode {
     @Override
     public void runOpMode() {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
+        Mechanisms mech = new Mechanisms(hardwareMap);
 
         Pose2d startPose = new Pose2d(-48, -50, Math.toRadians(0));
 

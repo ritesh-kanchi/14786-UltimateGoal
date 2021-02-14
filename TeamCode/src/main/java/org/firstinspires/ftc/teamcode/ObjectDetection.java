@@ -24,7 +24,7 @@ public class ObjectDetection {
 
     public TFObjectDetector tfod;
 
-    LinearOpMode opmode = null;
+    LinearOpMode opmode;
 
     public static float CON_VALUE = 0.8f;
 
@@ -33,6 +33,10 @@ public class ObjectDetection {
     public static double ASPECT_RATIO_W = 4.0;
 
     public static double ASPECT_RATIO_H = 3.0;
+
+    public enum OBJECT {
+        NONE,SINGLE,QUAD
+    }
 
     public ObjectDetection(LinearOpMode opMode) {
         opmode = opMode;
