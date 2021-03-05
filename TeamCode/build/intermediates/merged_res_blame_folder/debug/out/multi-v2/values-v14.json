@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/riteshkanchi/Documents/14786-UltimateGoal/TeamCode/build/intermediates/incremental/mergeDebugResources/merged.dir/values-v14/values-v14.xml",
+            "outputFile": "C:\\Users\\kr12029768\\Documents\\GitHub\\14786-UltimateGoal\\TeamCode\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-v14\\values-v14.xml",
             "map": [
                 {
-                    "source": "/Users/riteshkanchi/.gradle/caches/transforms-2/files-2.1/74151e6644c10da7f9e5c40c436995fe/jetified-RobotCore-6.1.1/res/values-v14/values-v14.xml",
+                    "source": "C:\\Users\\kr12029768\\.gradle\\caches\\transforms-2\\files-2.1\\74151e6644c10da7f9e5c40c436995fe\\jetified-RobotCore-6.1.1\\res\\values-v14\\values-v14.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
