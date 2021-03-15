@@ -30,6 +30,8 @@ public class Mechanisms {
     // Init Lists
     private List<DcMotorEx> shooters;
 
+    private List<DcMotorEx> intakes;
+
     // Other Variables
     public static int PUSH_RESTORE_TIME = 500;
 
@@ -46,6 +48,11 @@ public class Mechanisms {
     // Power Enum
     public enum motorPower {
         HIGH, STALL, OFF
+    }
+
+    // Wobble Enum
+    public enum wobbleClawPos {
+        OPEN, CLOSE
     }
 
     // Power Values
@@ -78,6 +85,7 @@ public class Mechanisms {
 
         // Init inital Positions
         indexPush.setPosition(PUSH_MIN_VALUE);
+        wobbleControl(wobbleClawPos.CLOSE);
     }
 
     // Set Shooter List to HIGH, STALL, OR OFF
@@ -85,8 +93,10 @@ public class Mechanisms {
         switch (power) {
             case HIGH:
                 setPowers(shooters, HIGH_POWER);
+                break;
             case STALL:
                 setPowers(shooters, STALL_POWER);
+                break;
             default:
                 setPowers(shooters, OFF_POWER);
         }
@@ -123,6 +133,33 @@ public class Mechanisms {
             wait(PUSH_RESTORE_TIME);
             indexPush.setPosition(PUSH_MIN_VALUE);
             wait(PUSH_RESTORE_TIME);
+        }
+    }
+
+    public void wobbleControl(wobbleClawPos pos) {
+        switch (pos) {
+            case OPEN:
+                wobbleGrab.setPosition(WOBBLE_MAX_VALUE);
+                break;
+            case CLOSE:
+                wobbleGrab.setPosition(WOBBLE_MIN_VALUE);
+                break;
+        }
+    }
+
+    public void runIntake(motorPower power) {
+        switch (power) {
+            case HIGH:
+                intake.setPower(INTAKE_POWER);
+                bottomRoller.setPower(BOTTOM_ROLLER_POWER);
+                break;
+            case STALL:
+                intake.setPower((INTAKE_POWER + OFF_POWER) / 2);
+                bottomRoller.setPower((BOTTOM_ROLLER_POWER + OFF_POWER) / 2);
+                break;
+            default:
+                intake.setPower(OFF_POWER);
+                bottomRoller.setPower(OFF_POWER);
         }
     }
 

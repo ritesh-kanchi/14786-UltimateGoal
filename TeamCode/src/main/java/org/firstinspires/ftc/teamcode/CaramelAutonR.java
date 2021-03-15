@@ -18,7 +18,28 @@ public class CaramelAutonR extends LinearOpMode {
 
     private ObjectDetection.OBJECT detected;
 
-    private Trajectory placeWobble;
+    // Position Coordinates
+    private static double STARTING_X = -63;
+    private static double STARTING_Y = -25;
+
+    private static double SHOOTING_X = 0;
+    private static double SHOOTING_Y = -35;
+
+    // Set upon which target zone to go to based on rings scanned
+    private double WOBBLE_X;
+    private double WOBBLE_Y;
+
+    private static double QUAD_RING_X = 50;
+    private static double QUAD_RING_Y = -50;
+
+    private static double SINGLE_RING_X = 25;
+    private static double SINGLE_RING_Y = -25;
+
+    private static double NO_RING_X = 0;
+    private static double NO_RING_Y = -50;
+
+    private static double LINE_X = 10;
+    private static double LINE_Y = -35;
 
     @Override
     public void runOpMode() {
@@ -27,7 +48,7 @@ public class CaramelAutonR extends LinearOpMode {
         Mechanisms mech = new Mechanisms(hardwareMap);
         ObjectDetection od = new ObjectDetection(this);
 
-        Pose2d startPose = new Pose2d(-63, -25, Math.toRadians(0));
+        Pose2d startPose = new Pose2d(STARTING_X, STARTING_Y, Math.toRadians(0));
 
         drive.setPoseEstimate(startPose);
 
@@ -52,15 +73,25 @@ public class CaramelAutonR extends LinearOpMode {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND", recognition.getConfidence());
                                 detected = ObjectDetection.OBJECT.QUAD;
+                                WOBBLE_X = QUAD_RING_X;
+                                WOBBLE_Y = QUAD_RING_Y;
+
                                 break;
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND", recognition.getConfidence());
                                 detected = ObjectDetection.OBJECT.QUAD;
+                                WOBBLE_X = SINGLE_RING_X;
+                                WOBBLE_Y = SINGLE_RING_Y;
+
                                 break;
                             } else {
                                 // NO RINGS
+                                telemetry.addData("NONE FOUND", updatedRecognitions.size());
                                 detected = ObjectDetection.OBJECT.NONE;
+                                WOBBLE_X = NO_RING_X;
+                                WOBBLE_Y = NO_RING_Y;
+
                                 break;
                             }
 
@@ -68,50 +99,54 @@ public class CaramelAutonR extends LinearOpMode {
                         telemetry.update();
 
                         Trajectory goToShootOne = drive.trajectoryBuilder(startPose)
-                                // TIME MARKER TO START MOTOR, RUN to 0.9
+                                .addDisplacementMarker(() -> {
+                                    mech.setShooter(Mechanisms.motorPower.STALL);
+                                })
                                 .splineToConstantHeading(new Vector2d(-25, 0), Math.toRadians(0))
-                                .splineToConstantHeading(new Vector2d(0, -35), Math.toRadians(0))
-                                //ADD DISPLACEMENT MARKER FOR SERVO AND TURN OFF MOTOR/STALL IT, STOP
-                                // MOVEMENT PERHAPS? OR WE CAN ADD AS SEPERATE FUNCTION AFTER MOVEMENT
+                                .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
+                                .addDisplacementMarker(() -> {
+                                    mech.setShooter(Mechanisms.motorPower.HIGH);
+                                    mech.pushRings();
+                                    mech.setShooter(Mechanisms.motorPower.OFF);
+                                })
                                 .build();
 
-                        // GO TO BOTTOM LEFT CORNER OF EACH TO MAKE THE DROP
-                        switch (detected) {
-                            case QUAD:
-                                placeWobble = drive.trajectoryBuilder(goToShootOne.end())
-                                        .splineToConstantHeading(new Vector2d(50, -50), Math.toRadians(0))
-                                        .build();
-                                break;
-                            case SINGLE:
-                                placeWobble = drive.trajectoryBuilder(goToShootOne.end())
-                                        .splineToConstantHeading(new Vector2d(25, -25), Math.toRadians(0))
-                                        .build();
-                                break;
-                            default:
-                                placeWobble = drive.trajectoryBuilder(goToShootOne.end())
-                                        .splineToConstantHeading(new Vector2d(0, -50), Math.toRadians(0))
-                                        .build();
-                                break;
-                        }
+                        Trajectory placeWobble = drive.trajectoryBuilder(goToShootOne.end())
+                                .splineToConstantHeading(new Vector2d(WOBBLE_X, WOBBLE_Y), Math.toRadians(0))
+                                .addDisplacementMarker(() -> {
+                                    mech.wobbleControl(Mechanisms.wobbleClawPos.OPEN);
+                                    mech.wobbleControl(Mechanisms.wobbleClawPos.CLOSE);
+                                })
+                                .build();
 
                         Trajectory getNewRings = drive.trajectoryBuilder(placeWobble.end())
-                                .splineToConstantHeading(new Vector2d(-15 - 35), Math.toRadians(0))
-                                // START INTAKE
-                                .splineToConstantHeading(new Vector2d(-35 - 35), Math.toRadians(0))
+                                .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
+                                .addDisplacementMarker(() -> {
+                                    mech.runIntake(Mechanisms.motorPower.HIGH);
+                                })
+                                .lineTo(new Vector2d(-35, SHOOTING_Y))
 
                                 .build();
 
                         Trajectory goToShootTwo = drive.trajectoryBuilder(getNewRings.end())
-                                // TIME MARKER TO START MOTOR, RUN to 0.9
-                                .splineToConstantHeading(new Vector2d(0, -35), Math.toRadians(0))
-                                //ADD DISPLACEMENT MARKER FOR SERVO AND TURN OFF MOTOR/STALL IT, STOP
-                                // MOVEMENT PERHAPS? OR WE CAN ADD AS SEPERATE FUNCTION AFTER MOVEMENT
+                                .addDisplacementMarker(() -> {
+                                    mech.runIntake(Mechanisms.motorPower.OFF);
+                                    mech.setShooter(Mechanisms.motorPower.STALL);
+                                })
+                                .lineTo(new Vector2d(SHOOTING_X, SHOOTING_Y))
+                                .addDisplacementMarker(() -> {
+                                    mech.setShooter(Mechanisms.motorPower.HIGH);
+                                    mech.pushRings();
+                                    mech.setShooter(Mechanisms.motorPower.OFF);
+                                })
                                 .build();
 
                         Trajectory parkOnLine = drive.trajectoryBuilder(goToShootTwo.end())
-                                .splineToConstantHeading(new Vector2d(10, -35), Math.toRadians(0))
+                                .lineTo(new Vector2d(LINE_X, LINE_Y))
                                 .build();
 
+                        // Follow trajectories in order, may need to place functions
+                        // between these instead of using markers
                         drive.followTrajectory(goToShootOne);
                         drive.followTrajectory(placeWobble);
                         drive.followTrajectory(getNewRings);
