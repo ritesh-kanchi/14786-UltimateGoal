@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,29 +10,32 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Thread.sleep;
-
 public class Mechanisms {
-
+    // Init Objects
     public ElapsedTime runtime = new ElapsedTime();
 
-
+    // Init Objects: DcMotorEx
     private DcMotorEx shooterOne, shooterTwo;
-
-    private List<DcMotorEx> shooters;
 
     public DcMotorEx intake;
 
+    // Init Objects: CRServo
+    private CRServo bottomRoller;
+
+    // Init Objects: Servo
     private Servo indexPush;
 
     private Servo wobbleGrab;
 
-    private Servo intakeLeft, intakeRight;
+    // Init Lists
+    private List<DcMotorEx> shooters;
 
+    // Other Variables
+    public static int PUSH_RESTORE_TIME = 500;
 
     // Servo Positions
-    public static double PUSH_MAX_VALUE = 0.1;
-    public static double PUSH_MIN_VALUE = 0.8;
+    public static double PUSH_MAX_VALUE = 0;
+    public static double PUSH_MIN_VALUE = 0.2;
 
     public static double INTAKE_MAX_VALUE = 0.1;
     public static double INTAKE_MIN_VALUE = 0.8;
@@ -40,93 +43,116 @@ public class Mechanisms {
     public static double WOBBLE_MAX_VALUE = 0.1;
     public static double WOBBLE_MIN_VALUE = 0.8;
 
-    // Speed Levels for Shooter / Read note below
+    // Power Enum
     public enum motorPower {
-        HIGH, LOW, OFF
+        HIGH, STALL, OFF
     }
 
-    // Note to Ritesh; Rephrase to differentiate between high Goal and Power Shots?
-    private final double HIGH_POWER = 1;
-    private final double LOW_POWER = 0.5;
-    private final double OFF_POWER = 0;
+    // Power Values
+    private static double HIGH_POWER = 0.9;
+    private static double STALL_POWER = 0.5;
 
+    public static double BOTTOM_ROLLER_POWER = 1;
+    public static double INTAKE_POWER = 1;
+
+    private static double OFF_POWER = 0;
+
+    // Constructor
     public Mechanisms(HardwareMap hardwareMap) {
+        //  Hardware mapping: DcMotorEx
         shooterOne = hardwareMap.get(DcMotorEx.class, "shooter_one");
         shooterTwo = hardwareMap.get(DcMotorEx.class, "shooter_two");
 
         intake = hardwareMap.get(DcMotorEx.class, "intake_motor");
 
+        //  Hardware mapping: CRServo
+        bottomRoller = hardwareMap.get(CRServo.class, "bottom_roller");
+
+        //  Hardware mapping: Servo
         indexPush = hardwareMap.get(Servo.class, "index_push");
 
-        wobbleGrab = hardwareMap.get(Servo.class,"wobble_grab");
+        wobbleGrab = hardwareMap.get(Servo.class, "wobble_grab");
 
-        intakeLeft = hardwareMap.get(Servo.class, "intake_left");
-        intakeRight = hardwareMap.get(Servo.class, "intake_right");
+        // Set lists
+        shooters = Arrays.asList(shooterOne, shooterTwo);
 
-        shooters = Arrays.asList(shooterOne,shooterTwo);
+        // Init inital Positions
+        indexPush.setPosition(PUSH_MIN_VALUE);
     }
 
+    // Set Shooter List to HIGH, STALL, OR OFF
     public void setShooter(motorPower power) {
-       switch (power) {
-           case HIGH: setPowers(shooters,HIGH_POWER);
-           case LOW: setPowers(shooters,LOW_POWER);
-           case OFF: setPowers(shooters,OFF_POWER);
-       }
+        switch (power) {
+            case HIGH:
+                setPowers(shooters, HIGH_POWER);
+            case STALL:
+                setPowers(shooters, STALL_POWER);
+            default:
+                setPowers(shooters, OFF_POWER);
+        }
     }
 
+    // Parent of setShooter that's applicable to any list of motors, accepts double
     private void setPowers(List<DcMotorEx> motors, double power) {
-        for(DcMotorEx motor : motors) {
+        for (DcMotorEx motor : motors) {
             motor.setPower(power);
         }
     }
 
-    private void setPositions(List<Servo> servos, double position) {
-        for(Servo servo : servos) {
-            servo.setPosition(position);
-        }
-    }
+//    private void setPositions(List<Servo> servos, double position) {
+//        for (Servo servo : servos) {
+//            servo.setPosition(position);
+//        }
+//    }
 
-    public void toggleThroughShooter(motorPower shooterPower) {
-        switch (shooterPower) {
-            case OFF:
-                shooterPower = Mechanisms.motorPower.HIGH;
-            case HIGH:
-                shooterPower = Mechanisms.motorPower.LOW;
-            case LOW:
-                shooterPower = Mechanisms.motorPower.OFF;
-        }
-    }
+//    public void toggleThroughShooter(motorPower shooterPower) {
+//        switch (shooterPower) {
+//            case OFF:
+//                shooterPower = Mechanisms.motorPower.HIGH;
+//            case HIGH:
+//                shooterPower = Mechanisms.motorPower.LOW;
+//            case LOW:
+//                shooterPower = Mechanisms.motorPower.OFF;
+//        }
+//    }
 
-    public void pushRing() {
-            indexPush.setPosition(PUSH_MIN_VALUE);
-            wait(500);
+    // Hits rings three times into shooter
+    public void pushRings() {
+        for (int i = 0; i < 3; i++) {
             indexPush.setPosition(PUSH_MAX_VALUE);
-    }
-
-    public void moveIntake() {
-        if(intakeLeft.getPosition() == INTAKE_MAX_VALUE) {
-            intakeLeft.setPosition(INTAKE_MIN_VALUE);
-            intakeRight.setPosition(-INTAKE_MIN_VALUE);
-        } else {
-            intakeLeft.setPosition(INTAKE_MAX_VALUE);
-            intakeRight.setPosition(INTAKE_MAX_VALUE);
+            wait(PUSH_RESTORE_TIME);
+            indexPush.setPosition(PUSH_MIN_VALUE);
+            wait(PUSH_RESTORE_TIME);
         }
     }
 
-    public void intakeControl(double intakePower, Gamepad gamepad) {
-        if (gamepad.right_trigger == 1 && gamepad.left_trigger == 1) {
-            if (intakePower == 0) {
-                intakePower = gamepad.right_trigger - gamepad.left_trigger;
-            } else {
-                intakePower = 0;
-            }
-        }
-        intake.setPower(intakePower);
-    }
+//    public void moveIntake() {
+//        if (intakeLeft.getPosition() == INTAKE_MAX_VALUE) {
+//            intakeLeft.setPosition(INTAKE_MIN_VALUE);
+//            intakeRight.setPosition(-INTAKE_MIN_VALUE);
+//        } else {
+//            intakeLeft.setPosition(INTAKE_MAX_VALUE);
+//            intakeRight.setPosition(INTAKE_MAX_VALUE);
+//        }
+//    }
 
-    private void wait(int milliseconds){
+//    public void intakeControl(double intakePower, Gamepad gamepad) {
+//        if (gamepad.right_trigger == 1 && gamepad.left_trigger == 1) {
+//            if (intakePower == 0) {
+//                intakePower = gamepad.right_trigger - gamepad.left_trigger;
+//            } else {
+//                intakePower = 0;
+//            }
+//        }
+//        intake.setPower(intakePower);
+//    }
+
+    // Wait function that doesn't interrupt program runtime, uses elapsed time
+    private void wait(int milliseconds) {
         double currTime = runtime.time();
-        double waitUntil = currTime + (double)(milliseconds/1000);
-        while (runtime.time() < waitUntil){ }
+        double waitUntil = currTime + (double) (milliseconds / 1000);
+        while (runtime.time() < waitUntil) {
+            // remain empty
+        }
     }
 }

@@ -14,18 +14,21 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 @Config
 public class ObjectDetection {
+    // TF Assets and Models
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
     public static final String LABEL_FIRST_ELEMENT = "Quad";
     public static final String LABEL_SECOND_ELEMENT = "Single";
 
     private static final String VUFORIA_KEY = "AfjMuRf/////AAABmYxyagolxE9planYvv3uxyxYZtX1eFm+gKoobiWAGar3X0GYvUqRabO3xrGUIHaARVE+Nkfhw5T3r3LvAAzJ9r4LFhDnEtk1yFl5M+nSrh+LOSFuEyce17bZ4QSV5TL6Aewbg47wSVRNaoZAVBtNOrOnfE+5RWjUyDB0KP0TdtOQxSLLbiGl13k+w/A4qc73H11TGSNEcrRWTwzy/2YhfCt4wmnvB54z2+c31vtkO6HIeUCOvdO91M8F5wZ6Y154r0Z2L/5nJYL9jN2dl8tU6kWd37LNiiVBgcPyaPpuLNPAs8aBVjzjdR7zd7UZNLV2yB1bTBfzVlYfivalbGCwxkPpjBccZASMMuw1vInDmy/L";
 
+    // Init Objects
     private VuforiaLocalizer vuforia;
 
     public TFObjectDetector tfod;
 
     LinearOpMode opmode;
 
+    // Variables
     public static float CON_VALUE = 0.8f;
 
     public static double MAGNIFICATION_VALUE = 1.5;
@@ -38,11 +41,11 @@ public class ObjectDetection {
         NONE,SINGLE,QUAD
     }
 
+    // Constructor
     public ObjectDetection(LinearOpMode opMode) {
         opmode = opMode;
-    }
 
-    public void init() {
+        // Init Object Detection Technologies
         initVuforia();
         initTfod();
 
@@ -96,6 +99,7 @@ public class ObjectDetection {
         tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
     }
 
+    // Get Data of each recognition
     public void data(int i, Recognition recognition) {
         opmode.telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
         opmode.telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
@@ -104,6 +108,7 @@ public class ObjectDetection {
                 recognition.getRight(), recognition.getBottom());
     }
 
+    // Shutdown to turn off TF
     public void shutdown() {
         if (tfod != null) {
             tfod.shutdown();

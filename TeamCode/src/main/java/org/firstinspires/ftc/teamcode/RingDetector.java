@@ -14,13 +14,13 @@ import java.util.List;
 @Disabled
 @TeleOp(name = "RingDetector")
 public class RingDetector extends LinearOpMode {
-    ObjectDetection objD = new ObjectDetection(this);
+
 
     private ObjectDetection.OBJECT detected;
 
     @Override
     public void runOpMode() {
-        objD.init();
+        ObjectDetection objD = new ObjectDetection(this);
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -43,20 +43,26 @@ public class RingDetector extends LinearOpMode {
                                 detected = ObjectDetection.OBJECT.QUAD;
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
-                                telemetry.addData("SINGLE FOUND",recognition.getConfidence());
+                                telemetry.addData("SINGLE FOUND", recognition.getConfidence());
                                 detected = ObjectDetection.OBJECT.QUAD;
                             } else {
                                 // NO RINGS
                                 detected = ObjectDetection.OBJECT.NONE;
                             }
 
-                            switch (detected) {
-                                case QUAD: break;
-                                case SINGLE: break;
-                                default: break;
-                            }
+                            if (detected != null) break;
+
                         }
                         telemetry.update();
+
+                        switch (detected) {
+                            case QUAD:
+                                break;
+                            case SINGLE:
+                                break;
+                            default:
+                                break;
+                        }
                     }
                 }
             }
