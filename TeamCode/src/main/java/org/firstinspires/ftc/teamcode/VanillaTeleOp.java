@@ -15,22 +15,20 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 // BASIC CONTROL SCHEME
 public class VanillaTeleOp extends LinearOpMode {
 
-    private double shooterPower = 0.5;
+
 
     @Override
     public void runOpMode() {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
-        Mechanisms mech = new Mechanisms(hardwareMap);
 
-        Pose2d startPose = new Pose2d(-48, -50, Math.toRadians(0));
+        Pose2d startPose = new Pose2d(-63, -25, Math.toRadians(0));
 
         drive.setPoseEstimate(startPose);
 
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         waitForStart();
-        mech.runtime.reset();
         while (opModeIsActive()) {
 
             // Mecanum Drive Control
@@ -44,21 +42,6 @@ public class VanillaTeleOp extends LinearOpMode {
 
             drive.update();
 
-            // Mechanisms
-            if (gamepad1.a) mech.pushRing();
-
-            if (gamepad1.dpad_left) mech.moveIntake();
-
-            if (gamepad1.dpad_up) shooterPower += 0.1;
-            if (gamepad1.dpad_down) shooterPower -= 0.1;
-
-            mech.intake.setPower(gamepad1.right_trigger - gamepad1.left_trigger);
-
-            if(shooterPower > 1) shooterPower = 1;
-
-            if (shooterPower < 0) shooterPower = 0;
-
-            // Pose Data
             Pose2d poseEstimate = drive.getPoseEstimate();
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());

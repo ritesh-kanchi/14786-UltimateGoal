@@ -53,6 +53,7 @@ org/firstinspires/ftc/teamcode/Mechanisms.java
  org.firstinspires.ftc.teamcode.Mechanisms
  org.firstinspires.ftc.teamcode.Mechanisms$1
  org.firstinspires.ftc.teamcode.Mechanisms$motorPower
+ org.firstinspires.ftc.teamcode.Mechanisms$wobbleClawPos
 org/firstinspires/ftc/teamcode/util/LoggingUtil.java
  org.firstinspires.ftc.teamcode.util.LoggingUtil
 org/firstinspires/ftc/teamcode/TestingOdometry2.java
@@ -65,6 +66,8 @@ org/firstinspires/ftc/teamcode/drive/SampleTankDrive.java
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$1
  org.firstinspires.ftc.teamcode.drive.SampleTankDrive$Mode
+org/firstinspires/ftc/teamcode/CaramelAutonR.java
+ org.firstinspires.ftc.teamcode.CaramelAutonR
 org/firstinspires/ftc/teamcode/RingDetector.java
  org.firstinspires.ftc.teamcode.RingDetector
  org.firstinspires.ftc.teamcode.RingDetector$1
@@ -86,8 +89,8 @@ org/firstinspires/ftc/teamcode/util/DashboardUtil.java
  org.firstinspires.ftc.teamcode.util.DashboardUtil
 org/firstinspires/ftc/teamcode/BuildConfig.java
  org.firstinspires.ftc.teamcode.BuildConfig
-org/firstinspires/ftc/teamcode/drive/opmode/FollowerPIDTuner.java
- org.firstinspires.ftc.teamcode.drive.opmode.FollowerPIDTuner
 org/firstinspires/ftc/teamcode/ObjectDetection.java
  org.firstinspires.ftc.teamcode.ObjectDetection
  org.firstinspires.ftc.teamcode.ObjectDetection$OBJECT
+org/firstinspires/ftc/teamcode/drive/opmode/FollowerPIDTuner.java
+ org.firstinspires.ftc.teamcode.drive.opmode.FollowerPIDTuner

@@ -28,7 +28,6 @@ public class VanillaAuton extends LinearOpMode {
 
         drive.setPoseEstimate(startPose);
 
-        objD.init();
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();

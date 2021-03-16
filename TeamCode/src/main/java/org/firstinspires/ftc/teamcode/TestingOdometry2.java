@@ -21,10 +21,12 @@ public class TestingOdometry2 extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightFront"));
-        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftBack"));
-        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightBack"));
+        leftEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftBack"));
+        rightEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "rightFront"));
+        frontEncoder = new Encoder(hardwareMap.get(DcMotorEx.class, "leftFront"));
 
+        leftEncoder.setDirection(Encoder.Direction.REVERSE);
+        rightEncoder.setDirection(Encoder.Direction.REVERSE);
 
         waitForStart();
         while (opModeIsActive()) {
