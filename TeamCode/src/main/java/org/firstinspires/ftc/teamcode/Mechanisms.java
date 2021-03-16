@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -10,6 +12,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import java.util.Arrays;
 import java.util.List;
 
+@Config
 public class Mechanisms {
     // Init Objects
     public ElapsedTime runtime = new ElapsedTime();
@@ -17,13 +20,14 @@ public class Mechanisms {
     // Init Objects: DcMotorEx
     private DcMotorEx shooterOne, shooterTwo;
 
+
     public DcMotorEx intake;
 
     // Init Objects: CRServo
     private CRServo bottomRoller;
 
     // Init Objects: Servo
-    private Servo indexPush;
+    public Servo indexPush;
 
     private Servo wobbleGrab;
 
@@ -56,8 +60,8 @@ public class Mechanisms {
     }
 
     // Power Values
-    private static double HIGH_POWER = 0.9;
-    private static double STALL_POWER = 0.5;
+    public static double HIGH_POWER = 0.9;
+    public static double STALL_POWER = 0.5;
 
     public static double BOTTOM_ROLLER_POWER = 1;
     public static double INTAKE_POWER = 1;
@@ -82,6 +86,9 @@ public class Mechanisms {
 
         // Set lists
         shooters = Arrays.asList(shooterOne, shooterTwo);
+
+        shooterOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        shooterTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Init inital Positions
         indexPush.setPosition(PUSH_MIN_VALUE);

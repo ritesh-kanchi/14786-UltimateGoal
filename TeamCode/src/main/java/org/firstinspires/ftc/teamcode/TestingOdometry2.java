@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import org.firstinspires.ftc.teamcode.util.Encoder;
 
 @Config
-//@Disabled
+@Disabled
 @TeleOp(name = "TestingOdometry2")
 public class TestingOdometry2 extends LinearOpMode {
 

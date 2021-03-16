@@ -26,7 +26,7 @@ public class FastShooter extends LinearOpMode {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
         shooterOne = hardwareMap.get(DcMotorEx.class, "shooterOne");
-        shooterTwo = hardwareMap.get(DcMotorEx.class, "leftEncoder");
+        shooterTwo = hardwareMap.get(DcMotorEx.class, "shooterTwo");
         
 
         Pose2d startPose = new Pose2d(-48, -50, Math.toRadians(0));

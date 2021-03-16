@@ -52,8 +52,11 @@ public class CaramelTeleOp extends LinearOpMode {
             drive.update();
 
             // Mechanisms
-            if (gamepad1.a) mech.pushRings();
+//            if (gamepad1.a) mech.pushRings();
 //
+            if (gamepad1.a) mech.indexPush.setPosition(Mechanisms.PUSH_MAX_VALUE);
+
+            if (gamepad1.b) mech.indexPush.setPosition(Mechanisms.PUSH_MIN_VALUE);
 //            if (gamepad1.dpad_left) mech.moveIntake();
 //
             if (gamepad1.dpad_up) mech.setShooter(Mechanisms.motorPower.HIGH);
