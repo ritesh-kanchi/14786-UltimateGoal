@@ -19,27 +19,27 @@ public class CaramelAutonR extends LinearOpMode {
     private ObjectDetection.OBJECT detected;
 
     // Position Coordinates
-    private static double STARTING_X = -63;
-    private static double STARTING_Y = -25;
+    public static double STARTING_X = -63;
+    public static double STARTING_Y = -25;
 
-    private static double SHOOTING_X = 0;
-    private static double SHOOTING_Y = -35;
+    public static double SHOOTING_X = 0;
+    public static double SHOOTING_Y = -35;
 
     // Set upon which target zone to go to based on rings scanned
     private double WOBBLE_X;
     private double WOBBLE_Y;
 
-    private static double QUAD_RING_X = 50;
-    private static double QUAD_RING_Y = -50;
+    public static double QUAD_RING_X = 50;
+    public static double QUAD_RING_Y = -50;
 
-    private static double SINGLE_RING_X = 25;
-    private static double SINGLE_RING_Y = -25;
+    public static double SINGLE_RING_X = 25;
+    public static double SINGLE_RING_Y = -25;
 
-    private static double NO_RING_X = 0;
-    private static double NO_RING_Y = -50;
+    public static double NO_RING_X = 0;
+    public static double NO_RING_Y = -50;
 
-    private static double LINE_X = 10;
-    private static double LINE_Y = -35;
+    public static double LINE_X = 10;
+    public static double LINE_Y = -35;
 
     @Override
     public void runOpMode() {
@@ -63,12 +63,12 @@ public class CaramelAutonR extends LinearOpMode {
                     // the last time that call was made.
                     List<Recognition> updatedRecognitions = od.tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
-                        telemetry.addData("# Object Detected", updatedRecognitions.size());
+//                        telemetry.addData("# Object Detected", updatedRecognitions.size());
                         // step through the list of recognitions and display boundary info.
-                        int i = 0;
+//                        int i = 0;
                         for (Recognition recognition : updatedRecognitions) {
-                            od.data(i, recognition);
-                            i++;
+//                            od.data(i, recognition);
+//                            i++;
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND", recognition.getConfidence());

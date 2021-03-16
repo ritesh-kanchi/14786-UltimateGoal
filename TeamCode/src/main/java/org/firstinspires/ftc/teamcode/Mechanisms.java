@@ -67,18 +67,18 @@ public class Mechanisms {
     // Constructor
     public Mechanisms(HardwareMap hardwareMap) {
         //  Hardware mapping: DcMotorEx
-        shooterOne = hardwareMap.get(DcMotorEx.class, "shooter_one");
-        shooterTwo = hardwareMap.get(DcMotorEx.class, "shooter_two");
+        shooterOne = hardwareMap.get(DcMotorEx.class, "shooterOne");
+        shooterTwo = hardwareMap.get(DcMotorEx.class, "shooterTwo");
 
-        intake = hardwareMap.get(DcMotorEx.class, "intake_motor");
+        intake = hardwareMap.get(DcMotorEx.class, "intake");
 
         //  Hardware mapping: CRServo
-        bottomRoller = hardwareMap.get(CRServo.class, "bottom_roller");
+        bottomRoller = hardwareMap.get(CRServo.class, "bottomRoller");
 
         //  Hardware mapping: Servo
-        indexPush = hardwareMap.get(Servo.class, "index_push");
+        indexPush = hardwareMap.get(Servo.class, "indexPush");
 
-        wobbleGrab = hardwareMap.get(Servo.class, "wobble_grab");
+        wobbleGrab = hardwareMap.get(Servo.class, "wobbleGrab");
 
         // Set lists
         shooters = Arrays.asList(shooterOne, shooterTwo);

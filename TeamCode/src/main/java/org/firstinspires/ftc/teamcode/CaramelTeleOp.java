@@ -20,7 +20,6 @@ public class CaramelTeleOp extends LinearOpMode {
     private static int SHOOT_RANGE = 5;
 
     private static double SHOOTING_X = 0;
-
     private static double SHOOTING_Y = -35;
 
     @Override

@@ -16,8 +16,8 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 public class ObjectDetection {
     // TF Assets and Models
     private static final String TFOD_MODEL_ASSET = "UltimateGoal.tflite";
-    public static final String LABEL_FIRST_ELEMENT = "Quad";
-    public static final String LABEL_SECOND_ELEMENT = "Single";
+    private static final String LABEL_FIRST_ELEMENT = "Quad";
+    private static final String LABEL_SECOND_ELEMENT = "Single";
 
     private static final String VUFORIA_KEY = "AfjMuRf/////AAABmYxyagolxE9planYvv3uxyxYZtX1eFm+gKoobiWAGar3X0GYvUqRabO3xrGUIHaARVE+Nkfhw5T3r3LvAAzJ9r4LFhDnEtk1yFl5M+nSrh+LOSFuEyce17bZ4QSV5TL6Aewbg47wSVRNaoZAVBtNOrOnfE+5RWjUyDB0KP0TdtOQxSLLbiGl13k+w/A4qc73H11TGSNEcrRWTwzy/2YhfCt4wmnvB54z2+c31vtkO6HIeUCOvdO91M8F5wZ6Y154r0Z2L/5nJYL9jN2dl8tU6kWd37LNiiVBgcPyaPpuLNPAs8aBVjzjdR7zd7UZNLV2yB1bTBfzVlYfivalbGCwxkPpjBccZASMMuw1vInDmy/L";
 
@@ -26,7 +26,7 @@ public class ObjectDetection {
 
     public TFObjectDetector tfod;
 
-    LinearOpMode opmode;
+    private LinearOpMode opmode;
 
     // Variables
     public static float CON_VALUE = 0.8f;
@@ -38,7 +38,7 @@ public class ObjectDetection {
     public static double ASPECT_RATIO_H = 3.0;
 
     public enum OBJECT {
-        NONE,SINGLE,QUAD
+        NONE, SINGLE, QUAD
     }
 
     // Constructor
@@ -59,6 +59,8 @@ public class ObjectDetection {
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
             tfod.setZoom(MAGNIFICATION_VALUE, ASPECT_RATIO_W / ASPECT_RATIO_H);
+
+
         }
     }
 
@@ -84,7 +86,6 @@ public class ObjectDetection {
 
 //        Vuforia.setFrameFormat(PIXEL_FORMAT.GRAYSCALE, true);
         vuforia.setFrameQueueCapacity(1);
-
     }
 
     /**
