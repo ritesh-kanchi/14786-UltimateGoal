@@ -75,6 +75,8 @@ org/firstinspires/ftc/teamcode/drive/DriveConstants.java
  org.firstinspires.ftc.teamcode.drive.DriveConstants
 org/firstinspires/ftc/teamcode/drive/opmode/MaxVelocityTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.MaxVelocityTuner
+org/firstinspires/ftc/teamcode/CaramelAutonRN.java
+ org.firstinspires.ftc.teamcode.CaramelAutonRN
 org/firstinspires/ftc/teamcode/VanillaAuton.java
  org.firstinspires.ftc.teamcode.VanillaAuton
 org/firstinspires/ftc/teamcode/CaramelTeleOp.java

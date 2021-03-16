@@ -37,7 +37,7 @@ public class Mechanisms {
     private List<DcMotorEx> intakes;
 
     // Other Variables
-    public static int PUSH_RESTORE_TIME = 500;
+    public static int PUSH_RESTORE_TIME = 250;
 
     // Servo Positions
     public static double PUSH_MAX_VALUE = 0;
@@ -60,8 +60,8 @@ public class Mechanisms {
     }
 
     // Power Values
-    public static double HIGH_POWER = 0.9;
-    public static double STALL_POWER = 0.5;
+    public static double HIGH_POWER = 0.04;
+    public static double STALL_POWER = 0.03;
 
     public static double BOTTOM_ROLLER_POWER = 1;
     public static double INTAKE_POWER = 1;
@@ -135,12 +135,22 @@ public class Mechanisms {
 
     // Hits rings three times into shooter
     public void pushRings() {
-        for (int i = 0; i < 3; i++) {
-            indexPush.setPosition(PUSH_MAX_VALUE);
-            wait(PUSH_RESTORE_TIME);
-            indexPush.setPosition(PUSH_MIN_VALUE);
-            wait(PUSH_RESTORE_TIME);
-        }
+
+        indexPush.setPosition(PUSH_MAX_VALUE);
+        wait(PUSH_RESTORE_TIME);
+        indexPush.setPosition(PUSH_MIN_VALUE);
+        wait(PUSH_RESTORE_TIME);
+
+        indexPush.setPosition(PUSH_MAX_VALUE);
+        wait(PUSH_RESTORE_TIME);
+        indexPush.setPosition(PUSH_MIN_VALUE);
+        wait(PUSH_RESTORE_TIME);
+
+        indexPush.setPosition(PUSH_MAX_VALUE);
+        wait(PUSH_RESTORE_TIME);
+        indexPush.setPosition(PUSH_MIN_VALUE);
+        wait(PUSH_RESTORE_TIME);
+
     }
 
     public void wobbleControl(wobbleClawPos pos) {
@@ -193,9 +203,9 @@ public class Mechanisms {
 
     // Wait function that doesn't interrupt program runtime, uses elapsed time
     private void wait(int milliseconds) {
-        double currTime = runtime.time();
-        double waitUntil = currTime + (double) (milliseconds / 1000);
-        while (runtime.time() < waitUntil) {
+        double currTime = runtime.milliseconds();
+        double waitUntil = currTime + milliseconds;
+        while (runtime.milliseconds() < waitUntil) {
             // remain empty
         }
     }
