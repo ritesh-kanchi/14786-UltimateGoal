@@ -11,7 +11,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import java.util.List;
 
 @Config
-@Disabled
+//@Disabled
 @TeleOp(name = "RingDetector")
 public class RingDetector extends LinearOpMode {
 
@@ -40,29 +40,21 @@ public class RingDetector extends LinearOpMode {
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND",recognition.getConfidence());
-                                detected = ObjectDetection.OBJECT.QUAD;
+//                                detected = ObjectDetection.OBJECT.QUAD;
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND", recognition.getConfidence());
-                                detected = ObjectDetection.OBJECT.QUAD;
+//                                detected = ObjectDetection.OBJECT.QUAD;
                             } else {
                                 // NO RINGS
-                                detected = ObjectDetection.OBJECT.NONE;
+                                telemetry.addData("SINGLE FOUND", updatedRecognitions.size());
+//                                detected = ObjectDetection.OBJECT.NONE;
                             }
 
                             if (detected != null) break;
 
                         }
                         telemetry.update();
-
-                        switch (detected) {
-                            case QUAD:
-                                break;
-                            case SINGLE:
-                                break;
-                            default:
-                                break;
-                        }
                     }
                 }
             }

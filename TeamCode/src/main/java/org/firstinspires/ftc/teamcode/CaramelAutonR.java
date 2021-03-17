@@ -38,9 +38,6 @@ public class CaramelAutonR extends LinearOpMode {
     public static double NO_RING_X = 0;
     public static double NO_RING_Y = -50;
 
-    public static double LINE_X = 10;
-    public static double LINE_Y = -35;
-
     @Override
     public void runOpMode() {
 
@@ -65,14 +62,13 @@ public class CaramelAutonR extends LinearOpMode {
                     if (updatedRecognitions != null) {
 //                        telemetry.addData("# Object Detected", updatedRecognitions.size());
                         // step through the list of recognitions and display boundary info.
-//                        int i = 0;
+                        int i = 0;
                         for (Recognition recognition : updatedRecognitions) {
-//                            od.data(i, recognition);
-//                            i++;
+                            od.data(i, recognition);
+                            i++;
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND", recognition.getConfidence());
-                                detected = ObjectDetection.OBJECT.QUAD;
                                 WOBBLE_X = QUAD_RING_X;
                                 WOBBLE_Y = QUAD_RING_Y;
 
@@ -80,7 +76,6 @@ public class CaramelAutonR extends LinearOpMode {
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND", recognition.getConfidence());
-                                detected = ObjectDetection.OBJECT.QUAD;
                                 WOBBLE_X = SINGLE_RING_X;
                                 WOBBLE_Y = SINGLE_RING_Y;
 
@@ -88,7 +83,6 @@ public class CaramelAutonR extends LinearOpMode {
                             } else {
                                 // NO RINGS
                                 telemetry.addData("NONE FOUND", updatedRecognitions.size());
-                                detected = ObjectDetection.OBJECT.NONE;
                                 WOBBLE_X = NO_RING_X;
                                 WOBBLE_Y = NO_RING_Y;
 
@@ -106,7 +100,7 @@ public class CaramelAutonR extends LinearOpMode {
                                 .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
                                 .addDisplacementMarker(() -> {
                                     mech.setShooter(Mechanisms.motorPower.HIGH);
-                                    mech.pushRings();
+//                        mech.pushRings();
                                     mech.setShooter(Mechanisms.motorPower.OFF);
                                 })
                                 .build();
@@ -124,25 +118,29 @@ public class CaramelAutonR extends LinearOpMode {
                                 .addDisplacementMarker(() -> {
                                     mech.runIntake(Mechanisms.motorPower.HIGH);
                                 })
-                                .lineTo(new Vector2d(-35, SHOOTING_Y))
+
 
                                 .build();
+//
+                        Trajectory goBackIntake = drive.trajectoryBuilder(getNewRings.end())
+                                .back(35)
+                                .build();
 
-                        Trajectory goToShootTwo = drive.trajectoryBuilder(getNewRings.end())
+                        Trajectory goToShootTwo = drive.trajectoryBuilder(goBackIntake.end())
                                 .addDisplacementMarker(() -> {
                                     mech.runIntake(Mechanisms.motorPower.OFF);
                                     mech.setShooter(Mechanisms.motorPower.STALL);
                                 })
-                                .lineTo(new Vector2d(SHOOTING_X, SHOOTING_Y))
+                                .forward(35)
                                 .addDisplacementMarker(() -> {
                                     mech.setShooter(Mechanisms.motorPower.HIGH);
-                                    mech.pushRings();
+//                        mech.pushRings();
                                     mech.setShooter(Mechanisms.motorPower.OFF);
                                 })
                                 .build();
 
                         Trajectory parkOnLine = drive.trajectoryBuilder(goToShootTwo.end())
-                                .lineTo(new Vector2d(LINE_X, LINE_Y))
+                                .forward(10)
                                 .build();
 
                         // Follow trajectories in order, may need to place functions
@@ -150,6 +148,7 @@ public class CaramelAutonR extends LinearOpMode {
                         drive.followTrajectory(goToShootOne);
                         drive.followTrajectory(placeWobble);
                         drive.followTrajectory(getNewRings);
+                        drive.followTrajectory(goBackIntake);
                         drive.followTrajectory(goToShootTwo);
                         drive.followTrajectory(parkOnLine);
                     }

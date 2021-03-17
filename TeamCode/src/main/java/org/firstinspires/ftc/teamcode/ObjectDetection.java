@@ -29,7 +29,7 @@ public class ObjectDetection {
     private LinearOpMode opmode;
 
     // Variables
-    public static float CON_VALUE = 0.8f;
+    public static float CON_VALUE = 0.65f;
 
     public static double MAGNIFICATION_VALUE = 1.5;
 

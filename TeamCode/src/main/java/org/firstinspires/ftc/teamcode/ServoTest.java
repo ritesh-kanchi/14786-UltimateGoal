@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @Config
-@Disabled
+//@Disabled
 @TeleOp(name = "ServoTest")
 public class ServoTest extends LinearOpMode {
 
@@ -26,11 +26,11 @@ public class ServoTest extends LinearOpMode {
     @Override
     public void runOpMode() {
 
-        pushServo = hardwareMap.get(Servo.class, "ringPush");
+        pushServo = hardwareMap.get(Servo.class, "indexPush");
 //        clawServo = hardwareMap.get(Servo.class,"clawServo");
 
         shooterOne = hardwareMap.get(DcMotorEx.class, "shooterOne");
-        shooterTwo = hardwareMap.get(DcMotorEx.class, "leftEncoder");
+        shooterTwo = hardwareMap.get(DcMotorEx.class, "shooterTwo");
 
 //        intake = hardwareMap.get(DcMotorEx.class,"intakeMotor");
 

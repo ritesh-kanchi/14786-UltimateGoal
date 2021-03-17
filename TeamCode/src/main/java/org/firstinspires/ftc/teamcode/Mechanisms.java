@@ -20,7 +20,6 @@ public class Mechanisms {
     // Init Objects: DcMotorEx
     private DcMotorEx shooterOne, shooterTwo;
 
-
     public DcMotorEx intake;
 
     // Init Objects: CRServo
@@ -29,7 +28,7 @@ public class Mechanisms {
     // Init Objects: Servo
     public Servo indexPush;
 
-    private Servo wobbleGrab;
+    private Servo wobbleGrab, wobbleArm;
 
     // Init Lists
     private List<DcMotorEx> shooters;
@@ -42,9 +41,6 @@ public class Mechanisms {
     // Servo Positions
     public static double PUSH_MAX_VALUE = 0;
     public static double PUSH_MIN_VALUE = 0.2;
-
-    public static double INTAKE_MAX_VALUE = 0.1;
-    public static double INTAKE_MIN_VALUE = 0.8;
 
     public static double WOBBLE_MAX_VALUE = 0.1;
     public static double WOBBLE_MIN_VALUE = 0.8;
@@ -60,8 +56,8 @@ public class Mechanisms {
     }
 
     // Power Values
-    public static double HIGH_POWER = 0.04;
-    public static double STALL_POWER = 0.03;
+    public static double HIGH_POWER = 0.9;
+    public static double STALL_POWER = 0.5;
 
     public static double BOTTOM_ROLLER_POWER = 1;
     public static double INTAKE_POWER = 1;
@@ -83,12 +79,13 @@ public class Mechanisms {
         indexPush = hardwareMap.get(Servo.class, "indexPush");
 
         wobbleGrab = hardwareMap.get(Servo.class, "wobbleGrab");
+        wobbleArm = hardwareMap.get(Servo.class, "wobbleArm");
 
         // Set lists
         shooters = Arrays.asList(shooterOne, shooterTwo);
 
-        shooterOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        shooterTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        shooterOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+//        shooterTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         // Init inital Positions
         indexPush.setPosition(PUSH_MIN_VALUE);
