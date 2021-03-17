@@ -1,3 +1,5 @@
+org/firstinspires/ftc/teamcode/WobbleTest.java
+ org.firstinspires.ftc.teamcode.WobbleTest
 org/firstinspires/ftc/teamcode/drive/opmode/TrackWidthTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.TrackWidthTuner
 org/firstinspires/ftc/teamcode/drive/opmode/DriveVelocityPIDTuner.java
@@ -10,6 +12,8 @@ org/firstinspires/ftc/teamcode/drive/opmode/BackAndForth.java
  org.firstinspires.ftc.teamcode.drive.opmode.BackAndForth
 org/firstinspires/ftc/teamcode/drive/opmode/TurnTest.java
  org.firstinspires.ftc.teamcode.drive.opmode.TurnTest
+org/firstinspires/ftc/teamcode/IntakeTest.java
+ org.firstinspires.ftc.teamcode.IntakeTest
 org/firstinspires/ftc/teamcode/drive/opmode/MaxAngularVelocityTuner.java
  org.firstinspires.ftc.teamcode.drive.opmode.MaxAngularVelocityTuner
 org/firstinspires/ftc/teamcode/util/RegressionUtil.java
@@ -70,7 +74,6 @@ org/firstinspires/ftc/teamcode/CaramelAutonR.java
  org.firstinspires.ftc.teamcode.CaramelAutonR
 org/firstinspires/ftc/teamcode/RingDetector.java
  org.firstinspires.ftc.teamcode.RingDetector
- org.firstinspires.ftc.teamcode.RingDetector$1
 org/firstinspires/ftc/teamcode/drive/DriveConstants.java
  org.firstinspires.ftc.teamcode.drive.DriveConstants
 org/firstinspires/ftc/teamcode/drive/opmode/MaxVelocityTuner.java

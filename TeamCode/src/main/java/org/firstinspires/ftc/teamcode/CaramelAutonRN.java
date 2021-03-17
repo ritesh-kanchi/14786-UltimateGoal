@@ -7,10 +7,8 @@ import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
-
-import java.util.List;
+import org.firstinspires.ftc.teamcode.nextcore.Mechanisms;
 
 @Config
 @Autonomous(name = "CaramelAutonRN")
