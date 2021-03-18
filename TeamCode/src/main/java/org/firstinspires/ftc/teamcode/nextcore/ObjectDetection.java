@@ -3,10 +3,12 @@ package org.firstinspires.ftc.teamcode.nextcore;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.vuforia.PIXEL_FORMAT;
 import com.vuforia.Vuforia;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
@@ -26,7 +28,6 @@ public class ObjectDetection {
 
     public TFObjectDetector tfod;
 
-    private LinearOpMode opmode;
 
     // Variables
     public static float CON_VALUE = 0.65f;
@@ -42,12 +43,31 @@ public class ObjectDetection {
     }
 
     // Constructor
-    public ObjectDetection(LinearOpMode opMode) {
-        opmode = opMode;
+    public ObjectDetection(HardwareMap hardwareMap) {
 
         // Init Object Detection Technologies
-        initVuforia();
-        initTfod();
+
+        // INIT VUFORIA
+        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        parameters.vuforiaLicenseKey = VUFORIA_KEY;
+        parameters.cameraName = hardwareMap.get(WebcamName.class, "Webcam 1");
+
+        //  Instantiate the Vuforia engine
+        vuforia = ClassFactory.getInstance().createVuforia(parameters);
+
+        FtcDashboard.getInstance().startCameraStream(vuforia, 0);
+
+        // Loading trackables is not necessary for the TensorFlow Object Detection engine.
+        vuforia.setFrameQueueCapacity(1);
+
+// INIT TFOD
+        int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
+                "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        tfodParameters.minResultConfidence = CON_VALUE;
+        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
+        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
 
         if (tfod != null) {
             tfod.activate();
@@ -59,53 +79,15 @@ public class ObjectDetection {
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
             tfod.setZoom(MAGNIFICATION_VALUE, ASPECT_RATIO_W / ASPECT_RATIO_H);
-
-
         }
     }
 
-    /**
-     * Initialize the Vuforia localization engine.
-     */
-    private void initVuforia() {
-        /*
-         * Configure Vuforia by creating a Parameter object, and passing it to the Vuforia engine.
-         */
-
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
-        parameters.vuforiaLicenseKey = VUFORIA_KEY;
-        parameters.cameraName = opmode.hardwareMap.get(WebcamName.class, "Webcam 1");
-
-        //  Instantiate the Vuforia engine
-        vuforia = ClassFactory.getInstance().createVuforia(parameters);
-
-        FtcDashboard.getInstance().startCameraStream(vuforia, 0);
-
-        // Loading trackables is not necessary for the TensorFlow Object Detection engine.
-
-//        Vuforia.setFrameFormat(PIXEL_FORMAT.GRAYSCALE, true);
-        vuforia.setFrameQueueCapacity(1);
-    }
-
-    /**
-     * Initialize the TensorFlow Object Detection engine.
-     */
-    private void initTfod() {
-        int tfodMonitorViewId = opmode.hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", opmode.hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = CON_VALUE;
-        tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);
-        tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_FIRST_ELEMENT, LABEL_SECOND_ELEMENT);
-    }
-
     // Get Data of each recognition
-    public void data(int i, Recognition recognition) {
-        opmode.telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-        opmode.telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+    public void data(int i, Recognition recognition, Telemetry telemetry) {
+        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
                 recognition.getLeft(), recognition.getTop());
-        opmode.telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
                 recognition.getRight(), recognition.getBottom());
     }
 

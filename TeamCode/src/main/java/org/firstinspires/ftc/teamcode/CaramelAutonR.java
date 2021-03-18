@@ -47,7 +47,7 @@ public class CaramelAutonR extends LinearOpMode {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Mechanisms mech = new Mechanisms(hardwareMap);
-        ObjectDetection od = new ObjectDetection(this);
+        ObjectDetection od = new ObjectDetection(hardwareMap);
 
         Pose2d startPose = new Pose2d(STARTING_X, STARTING_Y, Math.toRadians(0));
 
@@ -68,7 +68,7 @@ public class CaramelAutonR extends LinearOpMode {
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
                         for (Recognition recognition : updatedRecognitions) {
-                            od.data(i, recognition);
+                            od.data(i, recognition, telemetry);
                             i++;
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
@@ -147,9 +147,14 @@ public class CaramelAutonR extends LinearOpMode {
                         mech.runIntake(Mechanisms.intakeState.IN);
 
                         drive.followTrajectory(goBackIntake);
-                        drive.followTrajectory(goToShootTwo);
-                        drive.followTrajectory(parkOnLine);
 
+                        drive.followTrajectory(goToShootTwo);
+
+                        mech.setShooter(Mechanisms.motorPower.HIGH);
+                        mech.wait(1000);
+                        mech.setShooter(Mechanisms.motorPower.OFF);
+
+                        drive.followTrajectory(parkOnLine);
 
                         autonRunning = false;
                     }

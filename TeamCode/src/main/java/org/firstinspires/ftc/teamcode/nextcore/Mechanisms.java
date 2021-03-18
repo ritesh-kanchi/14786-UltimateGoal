@@ -82,10 +82,13 @@ public class Mechanisms {
         wobbleGrab = hardwareMap.get(Servo.class, "wobbleGrab");
         wobbleArm = hardwareMap.get(Servo.class, "wobbleArm");
 
-        // Set lists
+        // Set Directions
 
         intake.setDirection(DcMotor.Direction.REVERSE);
         bottomRoller.setDirection(DcMotor.Direction.REVERSE);
+
+
+        // Set modes
 
         shooterOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         shooterTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -93,7 +96,7 @@ public class Mechanisms {
         shooterOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         shooterOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        // Init inital Positions
+        // Init initial Positions
         indexPush.setPosition(PUSH_MIN_VALUE);
         wobbleControl(wobbleClawPos.CLOSE);
     }
@@ -118,22 +121,12 @@ public class Mechanisms {
 
     // Hits rings three times into shooter
     public void pushRings() {
-
-        indexPush.setPosition(PUSH_MAX_VALUE);
-        wait(PUSH_RESTORE_TIME);
-        indexPush.setPosition(PUSH_MIN_VALUE);
-        wait(PUSH_RESTORE_TIME);
-
-        indexPush.setPosition(PUSH_MAX_VALUE);
-        wait(PUSH_RESTORE_TIME);
-        indexPush.setPosition(PUSH_MIN_VALUE);
-        wait(PUSH_RESTORE_TIME);
-
-        indexPush.setPosition(PUSH_MAX_VALUE);
-        wait(PUSH_RESTORE_TIME);
-        indexPush.setPosition(PUSH_MIN_VALUE);
-        wait(PUSH_RESTORE_TIME);
-
+        for (int i = 0; i < 3; i++) {
+            indexPush.setPosition(PUSH_MAX_VALUE);
+            wait(PUSH_RESTORE_TIME);
+            indexPush.setPosition(PUSH_MIN_VALUE);
+            wait(PUSH_RESTORE_TIME);
+        }
     }
 
     public void wobbleControl(wobbleClawPos pos) {
@@ -165,7 +158,7 @@ public class Mechanisms {
 
 
     // Wait function that doesn't interrupt program runtime, uses elapsed time
-    private void wait(int milliseconds) {
+    public void wait(int milliseconds) {
         double currTime = runtime.milliseconds();
         double waitUntil = currTime + milliseconds;
         while (runtime.milliseconds() < waitUntil) {

@@ -19,7 +19,7 @@ public class RingDetector extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        ObjectDetection objD = new ObjectDetection(this);
+        ObjectDetection objD = new ObjectDetection(hardwareMap);
         telemetry.addData(">", "Press Play to start op mode");
         telemetry.update();
         waitForStart();
@@ -34,7 +34,7 @@ public class RingDetector extends LinearOpMode {
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
                         for (Recognition recognition : updatedRecognitions) {
-                            objD.data(i, recognition);
+                            objD.data(i, recognition, telemetry);
                             i++;
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
