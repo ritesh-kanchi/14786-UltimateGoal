@@ -15,6 +15,10 @@ public class IntakeTest extends LinearOpMode {
     // Init Objects: CRServo
     private CRServo bottomRoller;
 
+    public static double INTAKE_SPEED = 0.7;
+
+    public static double BOTTOM_SPEED = 0.5;
+
     @Override
     public void runOpMode() {
         intake = hardwareMap.get(DcMotorEx.class, "intake");
@@ -25,8 +29,8 @@ public class IntakeTest extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             if (gamepad1.a) {
-                intake.setPower(1);
-                bottomRoller.setPower(1);
+                intake.setPower(INTAKE_SPEED);
+                bottomRoller.setPower(BOTTOM_SPEED);
             }
 
             if (gamepad1.b) {
@@ -35,8 +39,8 @@ public class IntakeTest extends LinearOpMode {
             }
 
             if (gamepad1.x) {
-                intake.setPower(-1);
-                bottomRoller.setPower(-1);
+                intake.setPower(-INTAKE_SPEED);
+                bottomRoller.setPower(-BOTTOM_SPEED);
             }
         }
     }

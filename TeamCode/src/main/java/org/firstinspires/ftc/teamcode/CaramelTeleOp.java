@@ -52,31 +52,16 @@ public class CaramelTeleOp extends LinearOpMode {
 
             // Mechanisms
             if (gamepad1.a) mech.pushRings();
-//
-//            if (gamepad1.a) mech.indexPush.setPosition(Mechanisms.PUSH_MAX_VALUE);
-//
-//            if (gamepad1.b) mech.indexPush.setPosition(Mechanisms.PUSH_MIN_VALUE);
-//            if (gamepad1.dpad_left) mech.moveIntake();
+
+            if (gamepad1.x) mech.runIntake(Mechanisms.motorPower.HIGH);
+
+            if (gamepad1.y) mech.runIntake(Mechanisms.motorPower.OFF);
 //
             if (gamepad1.dpad_up) mech.setShooter(Mechanisms.motorPower.HIGH);
 
             if (gamepad1.dpad_down) mech.setShooter(Mechanisms.motorPower.STALL);
 
             if (gamepad1.dpad_right) mech.setShooter(Mechanisms.motorPower.OFF);
-//
-//            mech.setShooter(shooterPower);
-//
-//            mech.intakeControl(intakePower, gamepad1);
-
-            // TESTING TOGGLES
-//            boolean xOn = false;
-//            if (gamepad1.x && xOn == false) {
-//                telemetry.addLine("Toggle Off");
-//                xOn = true;
-//            } else if (gamepad1.x && xOn) {
-//                telemetry.addLine(" Toggle On");
-//                xOn = false;
-//            }
 
 
             if ((poseEstimate.getX() < SHOOTING_X + SHOOT_RANGE
@@ -91,6 +76,8 @@ public class CaramelTeleOp extends LinearOpMode {
             telemetry.addData("x", poseEstimate.getX());
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", poseEstimate.getHeading());
+            telemetry.addData("S1", mech.shooterOne.getVelocity());
+            telemetry.addData("S2", mech.shooterTwo.getVelocity());
             telemetry.update();
         }
     }
