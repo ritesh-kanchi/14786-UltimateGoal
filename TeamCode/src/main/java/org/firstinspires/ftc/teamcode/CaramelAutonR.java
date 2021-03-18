@@ -40,6 +40,8 @@ public class CaramelAutonR extends LinearOpMode {
     public static double NO_RING_X = 0;
     public static double NO_RING_Y = -50;
 
+    private boolean autonRunning = true;
+
     @Override
     public void runOpMode() {
 
@@ -56,7 +58,7 @@ public class CaramelAutonR extends LinearOpMode {
         if (isStopRequested()) return;
 
         if (opModeIsActive()) {
-            while (opModeIsActive()) {
+            while (opModeIsActive() && autonRunning) {
                 if (od.tfod != null) {
                     // getUpdatedRecognitions() will return null if no new information is available since
                     // the last time that call was made.
@@ -96,32 +98,18 @@ public class CaramelAutonR extends LinearOpMode {
 
                         Trajectory goToShootOne = drive.trajectoryBuilder(startPose)
                                 .addDisplacementMarker(() -> {
-                                    mech.setShooter(Mechanisms.motorPower.STALL);
+                                    mech.setShooter(Mechanisms.motorPower.HIGH);
                                 })
                                 .splineToConstantHeading(new Vector2d(-25, 0), Math.toRadians(0))
                                 .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
-                                .addDisplacementMarker(() -> {
-                                    mech.setShooter(Mechanisms.motorPower.HIGH);
-//                        mech.pushRings();
-                                    mech.setShooter(Mechanisms.motorPower.OFF);
-                                })
                                 .build();
 
                         Trajectory placeWobble = drive.trajectoryBuilder(goToShootOne.end())
                                 .splineToConstantHeading(new Vector2d(WOBBLE_X, WOBBLE_Y), Math.toRadians(0))
-                                .addDisplacementMarker(() -> {
-                                    mech.wobbleControl(Mechanisms.wobbleClawPos.OPEN);
-                                    mech.wobbleControl(Mechanisms.wobbleClawPos.CLOSE);
-                                })
                                 .build();
 
                         Trajectory getNewRings = drive.trajectoryBuilder(placeWobble.end())
                                 .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
-                                .addDisplacementMarker(() -> {
-                                    mech.runIntake(Mechanisms.motorPower.HIGH);
-                                })
-
-
                                 .build();
 //
                         Trajectory goBackIntake = drive.trajectoryBuilder(getNewRings.end())
@@ -130,7 +118,7 @@ public class CaramelAutonR extends LinearOpMode {
 
                         Trajectory goToShootTwo = drive.trajectoryBuilder(goBackIntake.end())
                                 .addDisplacementMarker(() -> {
-                                    mech.runIntake(Mechanisms.motorPower.OFF);
+                                    mech.runIntake(Mechanisms.intakeState.OFF);
                                     mech.setShooter(Mechanisms.motorPower.STALL);
                                 })
                                 .forward(35)
@@ -148,11 +136,22 @@ public class CaramelAutonR extends LinearOpMode {
                         // Follow trajectories in order, may need to place functions
                         // between these instead of using markers
                         drive.followTrajectory(goToShootOne);
+                        mech.pushRings();
+
                         drive.followTrajectory(placeWobble);
+
+                        mech.wobbleControl(Mechanisms.wobbleClawPos.OPEN);
+
                         drive.followTrajectory(getNewRings);
+
+                        mech.runIntake(Mechanisms.intakeState.IN);
+
                         drive.followTrajectory(goBackIntake);
                         drive.followTrajectory(goToShootTwo);
                         drive.followTrajectory(parkOnLine);
+
+
+                        autonRunning = false;
                     }
                 }
             }

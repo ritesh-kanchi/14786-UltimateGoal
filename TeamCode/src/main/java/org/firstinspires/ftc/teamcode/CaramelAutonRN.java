@@ -5,12 +5,14 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.geometry.Vector2d;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.nextcore.Mechanisms;
 
 @Config
+@Disabled
 @Autonomous(name = "CaramelAutonRN")
 public class CaramelAutonRN extends LinearOpMode {
 
@@ -77,7 +79,7 @@ public class CaramelAutonRN extends LinearOpMode {
         Trajectory getNewRings = drive.trajectoryBuilder(placeWobble.end())
                 .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
                 .addDisplacementMarker(() -> {
-                    mech.runIntake(Mechanisms.motorPower.HIGH);
+//                    mech.runIntake(Mechanisms.motorPower.HIGH);
                 })
 
 
@@ -89,7 +91,7 @@ public class CaramelAutonRN extends LinearOpMode {
 
         Trajectory goToShootTwo = drive.trajectoryBuilder(goBackIntake.end())
                 .addDisplacementMarker(() -> {
-                    mech.runIntake(Mechanisms.motorPower.OFF);
+//                    mech.runIntake(Mechanisms.motorPower.OFF);
                     mech.setShooter(Mechanisms.motorPower.STALL);
                 })
                 .forward(35)

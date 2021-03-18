@@ -34,7 +34,7 @@ public class Mechanisms {
     // Init Lists
 
     // Other Variables
-    public static int PUSH_RESTORE_TIME = 100;
+    public static int PUSH_RESTORE_TIME = 150;
 
     // Servo Positions
     public static double PUSH_MAX_VALUE = 0;
@@ -48,6 +48,10 @@ public class Mechanisms {
     // Power Enum
     public enum motorPower {
         HIGH, STALL, OFF
+    }
+
+    public enum intakeState {
+        IN, OUT, OFF
     }
 
     // Wobble Enum
@@ -143,11 +147,15 @@ public class Mechanisms {
         }
     }
 
-    public void runIntake(motorPower power) {
-        switch (power) {
-            case HIGH:
+    public void runIntake(intakeState state) {
+        switch (state) {
+            case IN:
                 intake.setPower(INTAKE_POWER);
                 bottomRoller.setPower(BOTTOM_ROLLER_POWER);
+                break;
+            case OUT:
+                intake.setPower(-INTAKE_POWER);
+                bottomRoller.setPower(-BOTTOM_ROLLER_POWER);
                 break;
             default:
                 intake.setPower(OFF_POWER);
