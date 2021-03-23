@@ -71,8 +71,9 @@ public class CaramelAutonRN extends LinearOpMode {
         Trajectory placeWobble = drive.trajectoryBuilder(goToShootOne.end())
                 .splineToConstantHeading(new Vector2d(WOBBLE_X, WOBBLE_Y), Math.toRadians(0))
                 .addDisplacementMarker(() -> {
-                    mech.wobbleControl(Mechanisms.wobbleClawPos.OPEN);
-                    mech.wobbleControl(Mechanisms.wobbleClawPos.CLOSE);
+                    mech.wobbleControl(Mechanisms.wobblePos.OPEN);
+                    mech.wait(1000);
+                    mech.wobbleControl(Mechanisms.wobblePos.CLOSE);
                 })
                 .build();
 

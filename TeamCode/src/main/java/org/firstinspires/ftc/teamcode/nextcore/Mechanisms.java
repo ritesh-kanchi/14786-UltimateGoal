@@ -34,16 +34,19 @@ public class Mechanisms {
     // Init Lists
 
     // Other Variables
-    public static int PUSH_RESTORE_TIME = 150;
+    public static int PUSH_RESTORE_TIME = 185;
 
     // Servo Positions
     public static double PUSH_MAX_VALUE = 0;
     public static double PUSH_MIN_VALUE = 0.2;
 
-    public static double WOBBLE_MAX_VALUE = 0.1;
-    public static double WOBBLE_MIN_VALUE = 0.8;
+    public static double WOBBLE_MAX_VALUE = 0.99;
+    public static double WOBBLE_MIN_VALUE = 0.1;
 
-    public static double SHOOT_TPS = -900;
+    public static double WOBBLE_CLAW_MIN_VALUE = 0.99;
+    public static double WOBBLE_CLAW_MAX_VALUE = 0.1;
+
+    public static double SHOOT_TPS = -1100;
 
     // Power Enum
     public enum motorPower {
@@ -55,8 +58,12 @@ public class Mechanisms {
     }
 
     // Wobble Enum
-    public enum wobbleClawPos {
+    public enum wobblePos {
         OPEN, CLOSE
+    }
+
+    public enum wobbleArmPos {
+        UP, DOWN, AVG, OVER
     }
 
     // Power Values
@@ -98,7 +105,9 @@ public class Mechanisms {
 
         // Init initial Positions
         indexPush.setPosition(PUSH_MIN_VALUE);
-        wobbleControl(wobbleClawPos.CLOSE);
+
+        wobbleControl(wobblePos.CLOSE);
+        wobbleArmControl(wobbleArmPos.UP);
     }
 
     // Set Shooter List to HIGH, STALL, OR OFF
@@ -129,13 +138,30 @@ public class Mechanisms {
         }
     }
 
-    public void wobbleControl(wobbleClawPos pos) {
+    public void wobbleControl(wobblePos pos) {
         switch (pos) {
             case OPEN:
-                wobbleGrab.setPosition(WOBBLE_MAX_VALUE);
+                wobbleGrab.setPosition(WOBBLE_CLAW_MIN_VALUE);
                 break;
             case CLOSE:
-                wobbleGrab.setPosition(WOBBLE_MIN_VALUE);
+                wobbleGrab.setPosition(WOBBLE_CLAW_MAX_VALUE);
+                break;
+        }
+    }
+
+    public void wobbleArmControl(wobbleArmPos pos) {
+        switch (pos) {
+            case UP:
+                wobbleArm.setPosition(WOBBLE_MAX_VALUE);
+                break;
+            case AVG:
+                wobbleArm.setPosition((WOBBLE_MAX_VALUE + WOBBLE_MIN_VALUE) / 2);
+                break;
+            case DOWN:
+                wobbleArm.setPosition(WOBBLE_MIN_VALUE);
+                break;
+            case OVER:
+                wobbleArm.setPosition(0.75);
                 break;
         }
     }

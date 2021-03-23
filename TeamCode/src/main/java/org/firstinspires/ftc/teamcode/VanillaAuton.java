@@ -17,13 +17,14 @@ import java.util.List;
 @Disabled
 @TeleOp(name = "Vanilla Autonomous")
 public class VanillaAuton extends LinearOpMode {
-    ObjectDetection objD = new ObjectDetection(this);
+
 
     @Override
     public void runOpMode() {
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         Mechanisms mech = new Mechanisms(hardwareMap);
+        ObjectDetection objD = new ObjectDetection(hardwareMap);
 
         Pose2d startPose = new Pose2d(-48, -50, Math.toRadians(0));
 
@@ -45,7 +46,7 @@ public class VanillaAuton extends LinearOpMode {
                         // step through the list of recognitions and display boundary info.
                         int i = 0;
                         for (Recognition recognition : updatedRecognitions) {
-                            objD.data(i, recognition);
+                            objD.data(i, recognition, telemetry);
                             i++;
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
