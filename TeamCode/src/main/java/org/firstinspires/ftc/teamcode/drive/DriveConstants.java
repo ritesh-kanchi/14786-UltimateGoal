@@ -13,7 +13,7 @@ import java.util.Arrays;
  *
  * TODO: Tune or adjust the following constants to fit your robot. Note that the non-final
  * fields may also be edited through the dashboard (connect to the robot's WiFi network and
- * navigate to https://192.168.49.1:8080/dash). Make sure to save the values here after you
+ * navigate to 192.168.49.1:8080/dash). Make sure to save the values here after you
  * adjust them in the dashboard; **config variable changes don't persist between app restarts**.
  *
  * These are not the only parameters; some are located in the localizer classes, drive base classes,
@@ -58,9 +58,9 @@ public class DriveConstants {
      * empirically tuned.
      */
 //     1.0 / rpmToVelocity(MAX_RPM);
-    public static double kV = 0.0161;
-    public static double kA = 0.002;
-    public static double kStatic = 0.06307;
+    public static double kV = 0.0162;
+    public static double kA = 0.0025;
+    public static double kStatic = 0.06962;
 
     /*
      * These values are used to generate the trajectories for you robot. To ensure proper operation,
@@ -71,8 +71,9 @@ public class DriveConstants {
      * forces acceleration-limited profiling). All distance units are inches.
      */
 
-    public static double MAX_VEL = 52.48180821614297;
-    public static double MAX_ACCEL = 52.48180821614297;
+    public static double MAX_VEL = 87.222; //     public static double MAX_ANG_VEL = Math.toRadians(184.02607784577722);
+
+    public static double MAX_ACCEL = 87.222;
     public static double MAX_ANG_VEL = Math.toRadians(184.02607784577722);
     public static double MAX_ANG_ACCEL = Math.toRadians(184.02607784577722);
 
