@@ -18,8 +18,8 @@ public class NextTeleOp extends LinearOpMode {
     public double STARTING_X;
     public double STARTING_Y;
 
-    public SampleMecanumDrive drive;
-    public Mechanisms mech;
+    public SampleMecanumDrive drive = null;
+    public Mechanisms mech = null;
 
     public NextTeleOp(double STARTING_X, double STARTING_Y, double SHOOTING_X, double SHOOTING_Y) {
         this.STARTING_X = STARTING_X;

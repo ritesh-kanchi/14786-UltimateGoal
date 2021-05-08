@@ -11,8 +11,8 @@ public class RedTeleOp extends NextTeleOp {
     private static Positions pos = new Positions();
 
     public RedTeleOp() {
-        super(pos.RED_STARTING_X,
-                pos.RED_STARTING_Y,
+        super(pos.RED_ENDING_X,
+                pos.RED_ENDING_Y,
                 pos.RED_SHOOTING_X,
                 pos.RED_SHOOTING_Y);
     }
