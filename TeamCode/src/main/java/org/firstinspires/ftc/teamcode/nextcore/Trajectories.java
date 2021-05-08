@@ -12,21 +12,21 @@ public class Trajectories {
     Mechanisms mech = null;
     Pose2d startPose = null;
 
-    double WOBBLE_X,WOBBLE_Y,SHOOTING_X,SHOOTING_Y,ENDING_X,ENDING_Y;
+    double WOBBLE_X, WOBBLE_Y, SHOOTING_X, SHOOTING_Y, ENDING_X, ENDING_Y;
 
     public static double STRAFE_LEFT_TO_RING = 13;
     public static double INTAKE_BACK = 35;
 
     public Trajectories(SampleMecanumDrive drive, Mechanisms mech, Pose2d startPose, double WOBBLE_X, double WOBBLE_Y, double SHOOTING_X, double SHOOTING_Y, double ENDING_X, double ENDING_Y) {
-this.drive = drive;
-this.mech = mech;
-this.startPose = startPose;
-this.WOBBLE_X = WOBBLE_X;
-this.WOBBLE_Y = WOBBLE_Y;
-this.SHOOTING_X = SHOOTING_X;
-this.SHOOTING_Y = SHOOTING_Y;
-this.ENDING_X = ENDING_X;
-this.ENDING_Y = ENDING_Y;
+        this.drive = drive;
+        this.mech = mech;
+        this.startPose = startPose;
+        this.WOBBLE_X = WOBBLE_X;
+        this.WOBBLE_Y = WOBBLE_Y;
+        this.SHOOTING_X = SHOOTING_X;
+        this.SHOOTING_Y = SHOOTING_Y;
+        this.ENDING_X = ENDING_X;
+        this.ENDING_Y = ENDING_Y;
     }
 
     public Trajectory dropWobbleGoal = drive.trajectoryBuilder(startPose)
@@ -49,7 +49,7 @@ this.ENDING_Y = ENDING_Y;
             })
             .build();
     //
-    public  Trajectory goBackIntake = drive.trajectoryBuilder(getNewRings.end())
+    public Trajectory goBackIntake = drive.trajectoryBuilder(getNewRings.end())
             .back(INTAKE_BACK)
             .build();
 

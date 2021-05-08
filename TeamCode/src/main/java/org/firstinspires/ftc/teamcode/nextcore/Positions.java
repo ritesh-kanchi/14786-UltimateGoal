@@ -7,7 +7,7 @@ public class Positions {
     public double MIN_VALUE = -MAX_VALUE;
 
     public double ONE_TILE = 24;
-    public double HALF_TILE = ONE_TILE/2;
+    public double HALF_TILE = ONE_TILE / 2;
 
     public double ORIGIN = 0;
 
@@ -19,7 +19,8 @@ public class Positions {
     public static double ROBOT_WIDTH = 18; // LENGTH OF INTAKE SIDE
     public static double ROBOT_LENGTH = 18; // LENGTH OF WHEELS SIDE
 
-    public Positions() {}
+    public Positions() {
+    }
 
     // RED SPECIFIC DATA
 
@@ -87,10 +88,10 @@ public class Positions {
 
     // GETS X VALUE AGAINST THE WALL
     public double againstWallValueX(double value) {
-         if(value < 0) {
-             return value + ROBOT_LENGTH /2;
-         } else {
-             return value - ROBOT_LENGTH/2;
-         }
+        if (value < 0) {
+            return value + ROBOT_LENGTH / 2;
+        } else {
+            return value - ROBOT_LENGTH / 2;
+        }
     }
 }
