@@ -19,6 +19,7 @@ public class NextAuton extends LinearOpMode {
     public Mechanisms mech = null;
     public Pose2d startPose = null;
 
+    public static double ANGLE_SCALE = 16/15;
 
     public NextAuton(double STARTING_X, double STARTING_Y) {
         this.STARTING_X = STARTING_X;
@@ -40,6 +41,7 @@ public class NextAuton extends LinearOpMode {
         if (isStopRequested()) return;
     }
 
+
     public void runTraj(Trajectories trajs) {
         drive.followTrajectory(trajs.dropWobbleGoal);
 
@@ -47,6 +49,26 @@ public class NextAuton extends LinearOpMode {
         mech.wait(WOBBLE_WAIT);
         mech.wobbleControl(Mechanisms.wobblePos.OPEN);
 
+        lastHalf(trajs);
+
+
+    }
+
+    public void runTrajFLIP(Trajectories trajs) {
+        drive.followTrajectory(trajs.dropWobbleGoal);
+        drive.turn(Math.toRadians(180*ANGLE_SCALE));
+
+        mech.wobbleArmControl(Mechanisms.wobbleArmPos.DOWN);
+        mech.wait(WOBBLE_WAIT);
+        mech.wobbleControl(Mechanisms.wobblePos.OPEN);
+
+        drive.turn(Math.toRadians(180*ANGLE_SCALE));
+
+
+        lastHalf(trajs);
+    }
+
+    public void lastHalf(Trajectories trajs) {
         drive.followTrajectory(trajs.goToShootOne);
 
         mech.pushRings();

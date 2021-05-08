@@ -66,7 +66,7 @@ public class BlueAuton extends NextAuton {
                         telemetry.update();
 
                         // RUN TRAJECTORIES
-                        super.runTraj(traj);
+                        super.runTrajFLIP(traj);
 
                         autonRunning = false;
                     }

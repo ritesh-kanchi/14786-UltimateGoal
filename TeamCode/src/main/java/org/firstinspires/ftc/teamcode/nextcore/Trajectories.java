@@ -39,6 +39,15 @@ public class Trajectories {
             })
             .build();
 
+    // FLIPPED VERSION
+    public Trajectory dropWobbleGoalFLIP = drive.trajectoryBuilder(startPose)
+            .splineToConstantHeading(new Vector2d(JUNCTION_X, JUNCTION_Y), Math.toRadians(0))
+            .lineTo(new Vector2d(WOBBLE_X, WOBBLE_Y))
+            .addDisplacementMarker(() -> {
+                mech.setShooter(Mechanisms.motorPower.HIGH);
+            })
+            .build();
+
     public Trajectory goToShootOne = drive.trajectoryBuilder(dropWobbleGoal.end())
             .lineTo(new Vector2d(SHOOTING_X, SHOOTING_Y))
             .addDisplacementMarker(() -> {
