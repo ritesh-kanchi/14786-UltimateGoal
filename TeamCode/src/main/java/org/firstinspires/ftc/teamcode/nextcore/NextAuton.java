@@ -23,8 +23,8 @@ public class NextAuton extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-         drive = new SampleMecanumDrive(hardwareMap);
-         mech = new Mechanisms(hardwareMap);
+        drive = new SampleMecanumDrive(hardwareMap);
+        mech = new Mechanisms(hardwareMap);
 
 
         startPose = new Pose2d(STARTING_X, STARTING_Y, Math.toRadians(0));
@@ -36,7 +36,7 @@ public class NextAuton extends LinearOpMode {
         if (isStopRequested()) return;
     }
 
-    public void runTraj(Trajectories trajs){
+    public void runTraj(Trajectories trajs) {
         Trajectories traj = trajs;
         drive.followTrajectory(traj.dropWobbleGoal);
         drive.followTrajectory(traj.goToShootOne);

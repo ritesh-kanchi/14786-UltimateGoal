@@ -28,7 +28,7 @@ public class RedAuton extends NextAuton {
     Trajectories traj = null;
 
     public RedAuton() {
-        super(pos.RED_STARTING_X,pos.RED_STARTING_Y);
+        super(pos.RED_STARTING_X, pos.RED_STARTING_Y);
     }
 
     @Override
@@ -48,17 +48,17 @@ public class RedAuton extends NextAuton {
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND", recognition.getConfidence());
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.RED_WOBBLE_X_4,pos.RED_WOBBLE_Y_4,pos.RED_SHOOTING_X,pos.RED_SHOOTING_X,pos.RED_ENDING_X,pos.RED_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.RED_WOBBLE_X_4, pos.RED_WOBBLE_Y_4, pos.RED_SHOOTING_X, pos.RED_SHOOTING_X, pos.RED_ENDING_X, pos.RED_ENDING_Y);
                                 break;
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND", recognition.getConfidence());
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.RED_WOBBLE_X_1,pos.RED_WOBBLE_Y_1,pos.RED_SHOOTING_X,pos.RED_SHOOTING_X,pos.RED_ENDING_X,pos.RED_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.RED_WOBBLE_X_1, pos.RED_WOBBLE_Y_1, pos.RED_SHOOTING_X, pos.RED_SHOOTING_X, pos.RED_ENDING_X, pos.RED_ENDING_Y);
                                 break;
                             } else {
                                 // NO RINGS
                                 telemetry.addLine("NONE FOUND");
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.RED_WOBBLE_X_0,pos.RED_WOBBLE_Y_0,pos.RED_SHOOTING_X,pos.RED_SHOOTING_X,pos.RED_ENDING_X,pos.RED_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.RED_WOBBLE_X_0, pos.RED_WOBBLE_Y_0, pos.RED_SHOOTING_X, pos.RED_SHOOTING_X, pos.RED_ENDING_X, pos.RED_ENDING_Y);
                                 break;
                             }
 
@@ -66,7 +66,7 @@ public class RedAuton extends NextAuton {
                         telemetry.update();
 
                         // RUN TRAJECTORIES
-                     super.runTraj(traj);
+                        super.runTraj(traj);
 
                         autonRunning = false;
                     }

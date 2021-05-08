@@ -57,7 +57,6 @@ public class Mechanisms {
     public static double SHOOT_TPS = 1500;
 
 
-
     // Power Enum
     public enum motorPower {
         HIGH, STALL, OFF
@@ -223,8 +222,6 @@ public class Mechanisms {
                 break;
         }
     }
-
-
 
 
     public void runIntake(intakeState state) {

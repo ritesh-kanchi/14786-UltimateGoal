@@ -20,7 +20,7 @@ public class BlueTeleOp extends NextTeleOp {
     @Override
     public void runOpMode() {
         super.runOpMode();
-        while(opModeIsActive()) {
+        while (opModeIsActive()) {
             super.runDrive();
             super.runControls();
         }

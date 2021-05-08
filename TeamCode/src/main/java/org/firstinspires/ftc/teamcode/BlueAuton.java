@@ -28,7 +28,7 @@ public class BlueAuton extends NextAuton {
     Trajectories traj = null;
 
     public BlueAuton() {
-        super(pos.BLUE_STARTING_X,pos.BLUE_STARTING_Y);
+        super(pos.BLUE_STARTING_X, pos.BLUE_STARTING_Y);
     }
 
     @Override
@@ -48,17 +48,17 @@ public class BlueAuton extends NextAuton {
                             if (recognition.getLabel().equals("Quad")) {
                                 // QUAD RINGS
                                 telemetry.addData("QUAD FOUND", recognition.getConfidence());
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.BLUE_WOBBLE_X_4,pos.BLUE_WOBBLE_Y_4,pos.BLUE_SHOOTING_X,pos.BLUE_SHOOTING_X,pos.BLUE_ENDING_X,pos.BLUE_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.BLUE_WOBBLE_X_4, pos.BLUE_WOBBLE_Y_4, pos.BLUE_SHOOTING_X, pos.BLUE_SHOOTING_X, pos.BLUE_ENDING_X, pos.BLUE_ENDING_Y);
                                 break;
                             } else if (recognition.getLabel().equals("Single")) {
                                 // SINGLE RING
                                 telemetry.addData("SINGLE FOUND", recognition.getConfidence());
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.BLUE_WOBBLE_X_1,pos.BLUE_WOBBLE_Y_1,pos.BLUE_SHOOTING_X,pos.BLUE_SHOOTING_X,pos.BLUE_ENDING_X,pos.BLUE_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.BLUE_WOBBLE_X_1, pos.BLUE_WOBBLE_Y_1, pos.BLUE_SHOOTING_X, pos.BLUE_SHOOTING_X, pos.BLUE_ENDING_X, pos.BLUE_ENDING_Y);
                                 break;
                             } else {
                                 // NO RINGS
                                 telemetry.addLine("NONE FOUND");
-                                traj = new Trajectories(super.drive,super.mech,super.startPose,pos.BLUE_WOBBLE_X_0,pos.BLUE_WOBBLE_Y_0,pos.BLUE_SHOOTING_X,pos.BLUE_SHOOTING_X,pos.BLUE_ENDING_X,pos.BLUE_ENDING_Y);
+                                traj = new Trajectories(super.drive, super.mech, super.startPose, pos.BLUE_WOBBLE_X_0, pos.BLUE_WOBBLE_Y_0, pos.BLUE_SHOOTING_X, pos.BLUE_SHOOTING_X, pos.BLUE_ENDING_X, pos.BLUE_ENDING_Y);
                                 break;
                             }
 
