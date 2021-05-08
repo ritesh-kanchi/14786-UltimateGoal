@@ -167,6 +167,13 @@ public class Mechanisms {
         }
     }
 
+    public void pushRing() {
+            indexPush.setPosition(PUSH_MAX_VALUE);
+            wait(PUSH_RESTORE_TIME);
+            indexPush.setPosition(PUSH_MIN_VALUE);
+            wait(PUSH_RESTORE_TIME);
+    }
+
     public void pushOneRings() {
         indexPush.setPosition(PUSH_MAX_VALUE);
         wait(PUSH_RESTORE_TIME);

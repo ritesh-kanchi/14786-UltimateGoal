@@ -59,8 +59,8 @@ public class NextTeleOp extends LinearOpMode {
         if (gamepad1.right_bumper) mech.setShooter(Mechanisms.motorPower.OFF);
 
         if (gamepad1.right_trigger > 0.5) mech.pushRings();
+        if (gamepad1.left_trigger > 0.5) mech.pushRing();
 
-        // Mechanisms - GAMEPAD 2
         if (gamepad2.dpad_up) mech.wobbleArmControl(Mechanisms.wobbleArmPos.UP);
 
         if (gamepad2.dpad_down) mech.wobbleArmControl(Mechanisms.wobbleArmPos.DOWN);
@@ -108,5 +108,9 @@ public class NextTeleOp extends LinearOpMode {
         telemetry.addData("S1", mech.shooterOne.getVelocity());
         telemetry.addData("S2", mech.shooterTwo.getVelocity());
         telemetry.update();
+    }
+
+    public void autoDrive() {
+
     }
 }
