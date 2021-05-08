@@ -51,11 +51,11 @@ public class Positions {
 
     // from left to right
 
-    public static double RED_POWERSHOT_X = -1;
+    public static double RED_POWERSHOT_X = RED_SHOOTING_X;
 
     public static double RED_POWERSHOT_Y_1 = -31;
     public static double RED_POWERSHOT_Y_2 = -37;
-    public static double RED_POWERSHOT_Y_3 = 42;
+    public static double RED_POWERSHOT_Y_3 = -42;
 
     // BLUE SPECIFIC DATA
 
@@ -79,7 +79,7 @@ public class Positions {
 
     // from left to right
 
-    public static double BLUE_POWERSHOT_X = -1;
+    public static double BLUE_POWERSHOT_X = BLUE_SHOOTING_X;
 
     public static double BLUE_POWERSHOT_Y_1 = 42;
     public static double BLUE_POWERSHOT_Y_2 = 37;

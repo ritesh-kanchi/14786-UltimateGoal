@@ -11,6 +11,7 @@ public class BlueTeleOp extends NextTeleOp {
     private static Positions pos = new Positions();
 
     public BlueTeleOp() {
+        // ADD POWER SHOT POSITIONS
         super(pos.BLUE_ENDING_X,
                 pos.BLUE_ENDING_Y,
                 pos.BLUE_SHOOTING_X,
