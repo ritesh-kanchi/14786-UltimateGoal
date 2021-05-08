@@ -12,15 +12,17 @@ public class Trajectories {
     Mechanisms mech = null;
     Pose2d startPose = null;
 
-    double WOBBLE_X, WOBBLE_Y, SHOOTING_X, SHOOTING_Y, ENDING_X, ENDING_Y;
+    Positions pos = new Positions();
 
-    public static double STRAFE_LEFT_TO_RING = 13;
-    public static double INTAKE_BACK = 35;
+    double JUNCTION_X,JUNCTION_Y,WOBBLE_X, WOBBLE_Y, SHOOTING_X, SHOOTING_Y, ENDING_X, ENDING_Y;
 
-    public Trajectories(SampleMecanumDrive drive, Mechanisms mech, Pose2d startPose, double WOBBLE_X, double WOBBLE_Y, double SHOOTING_X, double SHOOTING_Y, double ENDING_X, double ENDING_Y) {
+
+    public Trajectories(SampleMecanumDrive drive, Mechanisms mech, Pose2d startPose, double JUNCTION_X, double JUNCTION_Y, double WOBBLE_X, double WOBBLE_Y, double SHOOTING_X, double SHOOTING_Y, double ENDING_X, double ENDING_Y) {
         this.drive = drive;
         this.mech = mech;
         this.startPose = startPose;
+        this.JUNCTION_X = JUNCTION_X;
+        this.JUNCTION_Y =JUNCTION_Y;
         this.WOBBLE_X = WOBBLE_X;
         this.WOBBLE_Y = WOBBLE_Y;
         this.SHOOTING_X = SHOOTING_X;
@@ -30,30 +32,25 @@ public class Trajectories {
     }
 
     public Trajectory dropWobbleGoal = drive.trajectoryBuilder(startPose)
-            .splineToConstantHeading(new Vector2d(-25, 0), Math.toRadians(0))
-            .splineToConstantHeading(new Vector2d(WOBBLE_X, WOBBLE_Y), Math.toRadians(0))
+            .splineToConstantHeading(new Vector2d(JUNCTION_X, JUNCTION_Y), Math.toRadians(0))
+            .lineTo(new Vector2d(WOBBLE_X, WOBBLE_Y))
             .addDisplacementMarker(() -> {
                 mech.setShooter(Mechanisms.motorPower.HIGH);
             })
             .build();
 
     public Trajectory goToShootOne = drive.trajectoryBuilder(dropWobbleGoal.end())
-            .splineToConstantHeading(new Vector2d(SHOOTING_X, SHOOTING_Y), Math.toRadians(0))
-            .build();
-
-    public Trajectory getNewRings = drive.trajectoryBuilder(goToShootOne.end())
-            .strafeLeft(STRAFE_LEFT_TO_RING)
+            .lineTo(new Vector2d(SHOOTING_X, SHOOTING_Y))
             .addDisplacementMarker(() -> {
-                mech.setShooter(Mechanisms.motorPower.STALL);
                 mech.runIntake(Mechanisms.intakeState.IN);
             })
             .build();
-    //
-    public Trajectory goBackIntake = drive.trajectoryBuilder(getNewRings.end())
-            .back(INTAKE_BACK)
+
+    public Trajectory getNewRings = drive.trajectoryBuilder(goToShootOne.end())
+            .back(pos.ONE_HALF_TILE)
             .build();
 
-    public Trajectory goToShootTwo = drive.trajectoryBuilder(goBackIntake.end())
+    public Trajectory goToShootTwo = drive.trajectoryBuilder(getNewRings.end())
             .addDisplacementMarker(() -> {
                 mech.runIntake(Mechanisms.intakeState.OFF);
                 mech.setShooter(Mechanisms.motorPower.HIGH);

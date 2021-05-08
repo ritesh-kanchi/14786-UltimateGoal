@@ -29,10 +29,16 @@ public class Positions {
     public Positions() {
     }
 
+    public static double INTAKE_BACK = 10;
+
     // RED SPECIFIC DATA
 
     public double RED_STARTING_X = againstWallValueX(MIN_VALUE);  // STARTING X FOR AUTON
     public static double RED_STARTING_Y = -25.5;  // STARTING Y FOR AUTON
+
+    public static double RED_JUNCTION_X = -12;
+    public static double RED_JUNCTION_Y = -12;
+
 
     public static double RED_SHOOTING_X = -1;
     public static double RED_SHOOTING_Y = -39;
@@ -60,7 +66,10 @@ public class Positions {
     // BLUE SPECIFIC DATA
 
     public double BLUE_STARTING_X = againstWallValueX(MIN_VALUE);  // STARTING X FOR AUTON
-    public static double BLUE_STARTING_Y = -49.5;  // STARTING Y FOR AUTON
+    public static double BLUE_STARTING_Y = 49.5;  // STARTING Y FOR AUTON
+
+    public static double BLUE_JUNCTION_X = -12;
+    public static double BLUE_JUNCTION_Y = 12;
 
     public static double BLUE_SHOOTING_X = -1;
     public static double BLUE_SHOOTING_Y = 39;

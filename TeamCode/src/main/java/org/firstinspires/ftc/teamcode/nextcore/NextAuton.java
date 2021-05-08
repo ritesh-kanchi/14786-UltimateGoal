@@ -11,6 +11,10 @@ public class NextAuton extends LinearOpMode {
     public double STARTING_X;
     public double STARTING_Y;
 
+    public static int WOBBLE_WAIT = 2000;
+
+    public static int SHOOT_WAIT = 1000;
+
     public SampleMecanumDrive drive = null;
     public Mechanisms mech = null;
     public Pose2d startPose = null;
@@ -37,12 +41,29 @@ public class NextAuton extends LinearOpMode {
     }
 
     public void runTraj(Trajectories trajs) {
-        Trajectories traj = trajs;
-        drive.followTrajectory(traj.dropWobbleGoal);
-        drive.followTrajectory(traj.goToShootOne);
-        drive.followTrajectory(traj.goBackIntake);
-        drive.followTrajectory(traj.goToShootTwo);
-        drive.followTrajectory(traj.parkOnLine);
+        drive.followTrajectory(trajs.dropWobbleGoal);
+
+        mech.wobbleArmControl(Mechanisms.wobbleArmPos.DOWN);
+        mech.wait(WOBBLE_WAIT);
+        mech.wobbleControl(Mechanisms.wobblePos.OPEN);
+
+        drive.followTrajectory(trajs.goToShootOne);
+
+        mech.pushRings();
+
+        mech.wait(SHOOT_WAIT);
+
+        drive.followTrajectory(trajs.getNewRings);
+
+        mech.wait(SHOOT_WAIT);
+
+        drive.followTrajectory(trajs.goToShootTwo);
+
+        mech.wait(SHOOT_WAIT);
+
+        mech.pushRings();
+
+        drive.followTrajectory(trajs.parkOnLine);
     }
 
 
