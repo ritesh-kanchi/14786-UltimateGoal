@@ -107,6 +107,7 @@ public class Mechanisms {
         wobbleGrab = hardwareMap.get(Servo.class, "wobbleGrab");
         wobbleArm = hardwareMap.get(Servo.class, "wobbleArm");
         wobbleTurret = hardwareMap.get(Servo.class, "wobbleTurret");
+
         stickOne = hardwareMap.get(Servo.class, "stickOne");
         stickTwo = hardwareMap.get(Servo.class, "stickTwo");
 
