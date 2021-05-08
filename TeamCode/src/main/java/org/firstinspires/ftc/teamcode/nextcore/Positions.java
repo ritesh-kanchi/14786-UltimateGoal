@@ -34,8 +34,8 @@ public class Positions {
     public double RED_STARTING_X = againstWallValueX(MIN_VALUE);  // STARTING X FOR AUTON
     public static double RED_STARTING_Y = -25.5;  // STARTING Y FOR AUTON
 
-    public static double RED_SHOOTING_X = 0;
-    public static double RED_SHOOTING_Y = 0;
+    public static double RED_SHOOTING_X = -1;
+    public static double RED_SHOOTING_Y = -39;
 
     public static double RED_ENDING_X = LAUNCH_LINE_X; // STARTING X FOR TELEOP + ENDING X FOR AUTON
     public static double RED_ENDING_Y = RED_SHOOTING_Y; // STARTING Y FOR TELEOP + ENDING Y FOR AUTON
@@ -62,8 +62,8 @@ public class Positions {
     public double BLUE_STARTING_X = againstWallValueX(MIN_VALUE);  // STARTING X FOR AUTON
     public static double BLUE_STARTING_Y = -49.5;  // STARTING Y FOR AUTON
 
-    public static double BLUE_SHOOTING_X = 0;
-    public static double BLUE_SHOOTING_Y = 0;
+    public static double BLUE_SHOOTING_X = -1;
+    public static double BLUE_SHOOTING_Y = 39;
 
     public static double BLUE_ENDING_X = LAUNCH_LINE_X; // STARTING X FOR TELEOP + ENDING X FOR AUTON
     public static double BLUE_ENDING_Y = BLUE_SHOOTING_Y; // STARTING Y FOR TELEOP + ENDING Y FOR AUTON
