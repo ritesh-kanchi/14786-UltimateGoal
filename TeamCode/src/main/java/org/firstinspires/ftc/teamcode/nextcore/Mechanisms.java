@@ -36,7 +36,7 @@ public class Mechanisms {
     // Init Lists
 
     // Other Variables
-    public static int PUSH_RESTORE_TIME = 70;
+    public static int PUSH_RESTORE_TIME = 100;
 
     // Servo Positions
     public static double PUSH_MAX_VALUE = 0.23;
@@ -55,6 +55,7 @@ public class Mechanisms {
     public static double STICK_MIN_VALUE = 0.1;
 
     public static double SHOOT_TPS = 1500;
+    public static double POWERSHOT_TPS = 1300;
 
 
     // Power Enum
