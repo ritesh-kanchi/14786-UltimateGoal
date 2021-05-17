@@ -109,7 +109,6 @@ public class Mechanisms {
         wobbleTurret = hardwareMap.get(Servo.class, "wobbleTurret");
 
         stickOne = hardwareMap.get(Servo.class, "stickOne");
-        stickTwo = hardwareMap.get(Servo.class, "stickTwo");
 
         // Set Directions
 

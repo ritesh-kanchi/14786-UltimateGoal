@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.nextcore.Mechanisms;
 
 @Config
-@Autonomous(name = "Motion Red")
+@Autonomous(name = "A - Motion Red")
 public class MotionRed extends LinearOpMode {
 
     // CHANGE FOR WOBBLE
@@ -150,6 +150,5 @@ public class MotionRed extends LinearOpMode {
         mech.wait(500);
 
         drive.followTrajectory(park);
-
     }
 }
